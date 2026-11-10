@@ -1,0 +1,8 @@
+pandas
+pyarrow
+neo4j
+python-dotenv
+openai
+pydantic
+matplotlib
+huggingface_hub

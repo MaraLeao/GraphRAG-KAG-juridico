@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.parquet
+data/
+Projeto Final_*.docx
+plano_grafo_neo4j.md
