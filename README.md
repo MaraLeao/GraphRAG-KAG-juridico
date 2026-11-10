@@ -82,6 +82,18 @@ docker exec -i neo4j-kag cypher-shell -u neo4j -p SUA_SENHA_AQUI < schema.cypher
 Os índices vetoriais ficam em `schema_vector.cypher`; aplique-os do mesmo modo, depois de ajustar a dimensão do embedding
 (1024 para `BAAI/bge-m3`, 1536 para `text-embedding-3-small`).
 
+### 3.1 Embeddings e busca GraphRAG
+
+```bash
+python scripts/embed.py                                  # embeddings de Chunk e Concept (baai/bge-m3, 1024 dim)
+python scripts/apply_schema.py schema_vector.cypher      # índices vetoriais
+python scripts/graphrag.py "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+```
+
+`graphrag.py` funde busca vetorial e fulltext (RRF), expande no grafo (entidades citadas e relações
+`REGULATES`/`AMENDS`/`INTERPRETS`/... ignorando super-nós como a CF/88) e gera a resposta citando trechos e relações.
+Use `--no-answer` para ver só a recuperação.
+
 ### 4. Análise exploratória
 
 Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o dataset do Hugging Face e gera
