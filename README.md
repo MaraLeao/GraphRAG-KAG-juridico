@@ -94,6 +94,27 @@ python scripts/graphrag.py "Qual a relação entre a LGPD e a dignidade da pesso
 `REGULATES`/`AMENDS`/`INTERPRETS`/... ignorando super-nós como a CF/88) e gera a resposta citando trechos e relações.
 Use `--no-answer` para ver só a recuperação.
 
+### 3.2 Carregar o banco pronto (dump)
+
+Para não repetir a extração por LLM e os embeddings, o grafo completo (artigos, chunks, entidades, relações e
+embeddings) pode ser restaurado de um dump do Neo4j (`neo4j.dump`, ~318 MB, compartilhado fora do Git porque o
+GitHub limita arquivos a 100 MB). Coloque o arquivo numa pasta, por exemplo `./dump/`, e rode:
+
+```bash
+# 1. restaurar o dump num volume novo (o container do Neo4j não pode estar usando o volume)
+docker run --rm -v neo4j_kag_data:/data -v "$PWD/dump":/backups neo4j:latest \
+  neo4j-admin database load neo4j --from-path=/backups --overwrite-destination=true
+
+# 2. subir o Neo4j com esse volume
+docker run -d --name neo4j-kag -p 7474:7474 -p 7687:7687 \
+  -e NEO4J_AUTH=neo4j/SUA_SENHA_AQUI -e 'NEO4J_PLUGINS=["graph-data-science"]' \
+  -v neo4j_kag_data:/data neo4j:latest
+```
+
+O dump contém o texto dos artigos do Âmbito Jurídico: não publique em repositório aberto sem conferir a licença do
+dataset. Ele não inclui senhas nem chaves. Para gerar um dump novo: pare o container e rode
+`neo4j-admin database dump neo4j --to-path=/backups` num container temporário com o mesmo volume.
+
 ### 4. Análise exploratória
 
 Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o dataset do Hugging Face e gera
