@@ -1,4 +1,7 @@
-# Neo4j do projeto. Lê NEO4J_PASSWORD do arquivo .env (na mesma pasta).
+# Neo4j LOCAL do projeto (reserva do Aura).
+# Senha: NEO4J_LOCAL_PASSWORD do .env (padrão: graphrag-local-123). É separada de
+# NEO4J_PASSWORD, que no .env aponta para o Aura. A senha só é aplicada na 1ª
+# inicialização do volume; para trocá-la depois, use `docker compose down -v`.
 #
 # Primeira vez (restaurar o banco pronto a partir de dump/neo4j.dump):
 #   docker compose run --rm restore
@@ -17,7 +20,7 @@ services:
       - "7474:7474"   # Neo4j Browser
       - "7687:7687"   # Bolt (driver Python)
     environment:
-      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?defina NEO4J_PASSWORD no .env (mín. 8 caracteres)}
+      NEO4J_AUTH: neo4j/${NEO4J_LOCAL_PASSWORD:-graphrag-local-123}   # mín. 8 caracteres
       NEO4J_PLUGINS: '["graph-data-science"]'
       # config de memória (ajustar conforme necessário)
       NEO4J_server_memory_heap_initial__size: 1G
