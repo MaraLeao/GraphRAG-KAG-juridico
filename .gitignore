@@ -6,3 +6,6 @@ __pycache__/
 data/
 Projeto Final_*.docx
 plano_grafo_neo4j.md
+dump/
+.env.*
+!.env.example
