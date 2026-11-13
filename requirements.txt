@@ -7,3 +7,4 @@ pydantic
 matplotlib
 huggingface_hub
 sentence-transformers
+pytest
