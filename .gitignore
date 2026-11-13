@@ -1,11 +1,22 @@
+# Secrets / Config local
 .env
-.venv/
-__pycache__/
-.ipynb_checkpoints/
-*.parquet
-data/
-Projeto Final_*.docx
-plano_grafo_neo4j.md
-dump/
 .env.*
 !.env.example
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dados
+*.parquet
+data/
+dump/
+
+# Documentos locais
+Projeto Final_*.docx
+plano_grafo_neo4j.md
