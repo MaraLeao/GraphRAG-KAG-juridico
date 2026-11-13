@@ -19,6 +19,19 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `schema_vector.cypher` | Índices vetoriais (rodar só depois de escolher o modelo de embedding; ajuste `vector.dimensions`) |
 | `.env.example` | Variáveis de ambiente esperadas (copie para `.env`, que **não** vai para o Git) |
 | `requirements.txt` | Dependências Python |
+| `pyproject.toml` | Empacotamento do código em `src/` e configuração do `pytest` |
+| `src/graphrag_juridico/` | Sistema de perguntas (ver abaixo) |
+| `tests/` | Testes automatizados (`python -m pytest`) |
+
+### Pacote `graphrag_juridico`
+
+| Módulo | Papel |
+|---|---|
+| `config.py` | Lê o `.env`; cria o driver Neo4j (`get_driver`) e o cliente LLM (`get_llm`, OpenRouter por padrão, trocável via `LLM_BASE_URL`) |
+| `db.py` | `read()`: executa Cypher em transação **somente leitura** (o Neo4j recusa escrita) |
+| `contracts.py` | Contrato `AskResult` devolvido por `ask()`, consumido pela UI e pela avaliação |
+| `ask.py` | Orquestrador `ask(question)`; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
+| `mock.py` | Resposta de exemplo no formato do contrato |
 
 ## Modelo do grafo (LPG)
 
@@ -57,8 +70,14 @@ contra o texto do chunk e unificadas por resolução de entidades (chaves canôn
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+pip install -e .         # instala o pacote src/graphrag_juridico em modo editável
 cp .env.example .env     # edite com suas credenciais (nunca faça commit do .env)
+python -m pytest         # roda os testes
 ```
+
+> No WSL, se `python -m venv` falhar por falta do `ensurepip`, use o [uv](https://docs.astral.sh/uv/):
+> `uv venv --python 3.12 .venv` e troque `pip install` por `uv pip install`. Para um PyTorch menor (só CPU),
+> rode antes `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
 
 ### 2. Neo4j com Docker
 
