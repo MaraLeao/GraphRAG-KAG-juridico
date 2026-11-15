@@ -7,6 +7,10 @@
 #   docker compose run --rm restore
 #   docker compose up -d neo4j
 #
+# Gerar um dump novo (dump/neo4j.dump) a partir do banco local, com o Neo4j PARADO.
+# O container grava como o usuário neo4j (uid 7474): libere escrita na pasta uma vez com `chmod a+w dump`.
+#   docker compose stop neo4j && docker compose run --rm dump && docker compose up -d neo4j
+#
 # Dia a dia:   docker compose up -d neo4j   |   docker compose stop
 # Apagar tudo: docker compose down -v   (remove o volume com o banco)
 
@@ -40,6 +44,16 @@ services:
     volumes:
       - neo4j_data:/data
       - ./dump:/backups:ro
+
+  # Gera dump/neo4j.dump a partir do volume. Só roda quando chamado explicitamente
+  # (docker compose run --rm dump), com o serviço neo4j PARADO.
+  dump:
+    image: *neo4j-image
+    profiles: ["dump"]
+    command: neo4j-admin database dump neo4j --to-path=/backups --overwrite-destination=true
+    volumes:
+      - neo4j_data:/data
+      - ./dump:/backups
 
 volumes:
   neo4j_data:
