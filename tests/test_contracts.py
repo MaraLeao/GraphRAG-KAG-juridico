@@ -43,13 +43,6 @@ def test_env_var_enables_mock(monkeypatch):
     assert ask("pergunta").answer
 
 
-def test_real_ask_not_integrated_yet(monkeypatch):
-    monkeypatch.delenv("GRAPHRAG_MOCK", raising=False)
-
-    with pytest.raises(NotImplementedError):
-        ask("pergunta")
-
-
 @pytest.mark.parametrize("score", [-0.1, 1.5])
 def test_confidence_score_must_be_between_0_and_1(score):
     with pytest.raises(ValidationError):
