@@ -93,6 +93,7 @@ def test_ask_joins_retrieval_cypher_and_answer(offline):
     assert result.cypher[0] == GENERATED and len(result.cypher) == 2     # gerada + estrutural
     assert result.chunks and result.nodes and result.edges and result.paths
     assert result.confidence.components["citations"] == 1.0
+    assert result.cypher_rows == [{"i.name": "ANPD"}]                 # resultado da [Q] fica rastreável
     assert "[Q]" in offline["prompt"] and "[C1]" in offline["prompt"]
 
 
@@ -115,5 +116,6 @@ def test_ask_passes_algorithm_options_to_retrieval(offline):
 def test_ask_output_is_valid_json_contract(offline):
     data = ask("pergunta").model_dump()
 
-    assert set(data) == {"question", "answer", "chunks", "nodes", "edges", "paths", "cypher", "confidence"}
+    assert set(data) == {"question", "answer", "chunks", "nodes", "edges", "paths", "cypher", "cypher_rows",
+                         "confidence"}
     assert 0.0 <= data["confidence"]["score"] <= 1.0
