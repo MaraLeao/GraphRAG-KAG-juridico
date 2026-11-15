@@ -21,6 +21,7 @@ from .algorithms import ENTITY_RELATIONS
 from .contracts import AskResult
 from .db import read
 from .multihop import EXPAND_QUERY, SHORTEST_PATH_QUERY
+from .retrieval import VECTOR_QUERY
 
 VIS_NETWORK = "https://unpkg.com/vis-network@9.1.6/standalone/umd/vis-network.min.js"
 PALETTE = ["#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F",
@@ -141,8 +142,8 @@ def _short(text: str, limit: int) -> str:
 
 
 def generated_cypher(result: AskResult) -> str | None:
-    """A Cypher gerada pelo LLM (as outras são consultas estruturais da recuperação)."""
-    structural = {SHORTEST_PATH_QUERY.strip(), EXPAND_QUERY.strip()}
+    """A Cypher gerada pelo LLM (as outras são consultas fixas da recuperação)."""
+    structural = {SHORTEST_PATH_QUERY.strip(), EXPAND_QUERY.strip(), VECTOR_QUERY.strip()}
     return next((q for q in result.cypher if q not in structural), None)
 
 
