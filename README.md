@@ -24,6 +24,7 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `app/streamlit_app.py` | Interface web (Streamlit): ponto de entrada fino sobre o pacote |
 | `.streamlit/config.toml` | Tema escuro da interface (mesmas cores do grafo) |
 | `tests/` | Testes automatizados (`python -m pytest`), inclusive da interface em modo demonstração |
+| `.github/workflows/ci.yml` | CI (GitHub Actions): varredura de segredos (gitleaks), lint com ruff e testes em todo PR e push na `main`, sem Neo4j nem LLM |
 
 ### Pacote `graphrag_juridico`
 
@@ -144,6 +145,35 @@ Nomes do schema em inglês; valores e conteúdo em português.
 
 **Nós:** `Article`, `Chunk`, `Category`, `Norm`, `Institution`, `Concept`, `Scholar`.
 
+```mermaid
+flowchart LR
+    Category((Category))
+    Article((Article))
+    Chunk((Chunk))
+    Norm((Norm))
+    Institution((Institution))
+    Concept((Concept))
+    Scholar((Scholar))
+
+    Article -->|IN_CATEGORY| Category
+    Article -->|HAS_CHUNK| Chunk
+    Article -->|CITES_NORM| Norm
+    Article -->|CITES_SCHOLAR| Scholar
+    Article -->|ABOUT| Concept
+
+    Chunk -->|MENTIONS| Norm
+    Chunk -->|MENTIONS| Institution
+    Chunk -->|MENTIONS| Concept
+    Chunk -->|MENTIONS| Scholar
+
+    Norm -->|REGULATES| Concept
+    Norm -->|AMENDS| Norm
+    Norm -->|REVOKES| Norm
+    Norm -->|ISSUED_BY| Institution
+    Institution -->|INTERPRETS| Norm
+    Concept -->|SPECIALIZES| Concept
+```
+
 **Relações:**
 
 | Relação | Padrão |
@@ -160,6 +190,8 @@ Nomes do schema em inglês; valores e conteúdo em português.
 
 Entidades e relações são extraídas por LLM (NER/RE) com exigência de trecho literal de evidência, validadas
 contra o texto do chunk e unificadas por resolução de entidades (chaves canônicas para normas, instituições e conceitos).
+
+Para a descrição completa de labels, relações, constraints e índices, veja [`docs/schema_lpg.md`](docs/schema_lpg.md).
 
 ## Como reproduzir
 
@@ -183,6 +215,14 @@ python -m pytest         # roda os testes
 > No WSL, se `python -m venv` falhar por falta do `ensurepip`, use o [uv](https://docs.astral.sh/uv/):
 > `uv venv --python 3.12 .venv` e troque `pip install` por `uv pip install`. Para um PyTorch menor (só CPU),
 > rode antes `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
+
+A CI roda o mesmo que você pode rodar localmente antes de abrir um PR: os testes não precisam do `.env`,
+do Neo4j nem do LLM, e o lint usa o [ruff](https://docs.astral.sh/ruff/) (a pasta `scripts/` fica de fora):
+
+```bash
+python -m pytest
+uvx ruff@0.14.0 check src/ tests/ app/   # ou: pip install ruff==0.14.0 && ruff check src/ tests/ app/
+```
 
 ### 2. Neo4j com Docker
 
@@ -258,5 +298,6 @@ Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o da
 - Modelo de embedding [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) via `sentence-transformers`.
 - LLMs via [OpenRouter](https://openrouter.ai/) (modelos definidos em `CYPHER_MODEL` e `ANSWER_MODEL` no `.env`).
 - [Streamlit](https://streamlit.io/) (interface) e [vis-network](https://visjs.github.io/vis-network/) (grafos interativos).
+- [pytest](https://pytest.org/), [ruff](https://docs.astral.sh/ruff/) e [gitleaks](https://github.com/gitleaks/gitleaks) (testes, lint e varredura de segredos), executados no GitHub Actions.
 - Visual dos grafos inspirado no [Graphify](https://github.com/Graphify-Labs/graphify) (Apache-2.0); nenhum código copiado.
 - Parte do código foi desenvolvida com apoio de assistente de IA (Claude Code), com revisão do grupo.
