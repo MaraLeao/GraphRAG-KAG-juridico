@@ -1,318 +1,383 @@
-# GraphRAG/KAG sobre artigos jurídicos (Neo4j)
+# GraphRAG Jurídico – Perguntas sobre Direito com Grafo de Conhecimento e LLM
 
-Projeto final de *Tendências em Ciência da Computação* (Bacharelado em Ciência da Computação): um sistema de
-recuperação aumentada por grafo de conhecimento (GraphRAG/KAG) que combina um banco de grafos (Neo4j) com LLMs.
+[![CI](https://github.com/MaraLeao/GraphRAG-KAG-juridico/actions/workflows/ci.yml/badge.svg)](https://github.com/MaraLeao/GraphRAG-KAG-juridico/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![uv](https://img.shields.io/badge/env-uv-de5fe9.svg)](https://docs.astral.sh/uv/)
+[![Neo4j](https://img.shields.io/badge/Neo4j-5.27%20Aura%20%7C%202026.10-008cc1.svg)](https://neo4j.com/)
+[![Streamlit](https://img.shields.io/badge/UI-Streamlit-ff4b4b.svg)](https://streamlit.io/)
+[![Embeddings](https://img.shields.io/badge/embeddings-BAAI%2Fbge--m3-ffcc4d.svg)](https://huggingface.co/BAAI/bge-m3)
+[![LLM](https://img.shields.io/badge/LLM-OpenRouter-6467f2.svg)](https://openrouter.ai/)
 
-## Dataset
+GraphRAG Jurídico responde perguntas sobre ~1.000 artigos do Âmbito Jurídico combinando um grafo de conhecimento no Neo4j com um LLM: a resposta cita os trechos dos artigos e os caminhos do grafo que a sustentam, e o sistema se abstém quando o corpus não tem a informação.
 
-[`celsowm/ambito_juridico_artigos`](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos) (Hugging Face):
-11.373 artigos do Âmbito Jurídico em 17 áreas do Direito, com `titulo`, `resumo`, `categoria`, `texto` e `link`.
-O notebook de análise remove duplicatas (resta ~10,6 mil artigos únicos) e define um subconjunto estratificado por
-categoria (~1.000 artigos) para a construção do grafo. Confira a licença do dataset antes de redistribuir trechos dos textos.
+| <div align="center">Mapa do conhecimento: as 1.500 entidades mais centrais do grafo (PageRank), coloridas pelas comunidades que o Louvain encontrou sem supervisão, que correspondem às áreas do Direito</div> |
+|---|
+| <img src="./docs/assets/mapa_conhecimento.png" width="100%" alt="Grafo com 1.500 nós coloridos por comunidade e a legenda com direitos fundamentais, responsabilidade civil, mediação, crime organizado e outras áreas"/> |
 
-## Conteúdo do repositório
+## Visão Geral
 
-| Arquivo | Descrição |
+Este repositório é o projeto final da disciplina *Tendências em Ciência da Computação* (Bacharelado em Ciência da Computação, 2026): um sistema de **GraphRAG/KAG** (*Graph-* e *Knowledge-Augmented Generation*) que cobre os quatro pilares da especificação: extração de entidades e relações do texto (Text-to-Graph), modelagem LPG no Neo4j, recuperação híbrida com travessia multi-hop e uma interface que mostra o subgrafo e a procedência de cada resposta. Uma avaliação contra o LLM puro e contra o RAG só vetorial mede o efeito do grafo.
+
+---
+
+## O Problema
+
+Perguntas jurídicas exigem precisão e fonte, e é aí que os LLMs e o RAG tradicional falham:
+
+| Dificuldade | Consequência |
 |---|---|
-| `analise_ambito_juridico.ipynb` | Análise exploratória: escopo, duplicatas, tamanho dos textos, frequência de normas/instituições/conceitos, co-ocorrência e amostragem |
-| `schema.cypher` | Constraints de unicidade, índice BTree e índices fulltext |
-| `schema_vector.cypher` | Índices vetoriais (rodar só depois de escolher o modelo de embedding; ajuste `vector.dimensions`) |
-| `.env.example` | Variáveis de ambiente esperadas (copie para `.env`, que **não** vai para o Git) |
-| `pyproject.toml` | Dependências Python, empacotamento do código em `src/` e configuração do `pytest` |
-| `uv.lock` | Versões exatas das dependências (gerado pelo uv; **versionado**, não edite à mão) |
-| `.python-version` | Versão do Python usada pelo uv (3.12) |
-| `src/graphrag_juridico/` | Sistema de perguntas (ver abaixo) |
-| `app/streamlit_app.py` | Interface web (Streamlit): ponto de entrada fino sobre o pacote |
-| `.streamlit/config.toml` | Tema escuro da interface (mesmas cores do grafo) |
-| `tests/` | Testes automatizados (`uv run pytest`), inclusive da interface em modo demonstração |
-| `.github/workflows/ci.yml` | CI (GitHub Actions): varredura de segredos (gitleaks), lint com ruff e testes em todo PR e push na `main`, sem Neo4j nem LLM, com as dependências do `uv.lock` |
+| O LLM responde de memória, sem fonte | Cita leis que não pode comprovar; na nossa avaliação, 80% das respostas do LLM puro citam normas sem nenhum suporte |
+| O RAG vetorial só acha trechos parecidos com a pergunta | Perde relações entre entidades ("quais instituições interpretam normas que regulam o consentimento?") e se abstém em perguntas que têm resposta |
+| A resposta é um texto fechado | Não dá para saber de onde veio cada afirmação nem conferir o raciocínio |
 
-### Pacote `graphrag_juridico`
+---
 
-| Módulo | Papel |
+## A Solução
+
+1. **Text-to-Graph** -> um LLM extrai normas, instituições, conceitos e doutrinadores de cada trecho, sempre com o trecho literal de evidência; a resolução de entidades unifica "LGPD", "Lei Geral de Proteção de Dados" e "Lei 13.709/2018" num nó só.
+2. **Grafo LPG no Neo4j** -> 29.705 nós e 111.547 relações, com constraints de unicidade e índices BTree, fulltext e vetoriais (bge-m3, 1024 dimensões).
+3. **Algoritmos de grafo** -> PageRank (centralidade) e Louvain (comunidades) calculados em Python e gravados nos nós; Shortest Path calculado na hora da pergunta.
+4. **Recuperação híbrida multi-hop** -> liga as entidades da pergunta, busca caminhos entre elas (até 4 saltos), expande 2 saltos priorizando a mesma comunidade e o maior PageRank, e funde por RRF os trechos dos caminhos, das entidades, da busca vetorial e da fulltext.
+5. **Text-to-Cypher** -> o LLM também escreve uma consulta Cypher, validada (somente leitura, schema, limite de saltos e de linhas) e conferida com `EXPLAIN` antes de executar.
+6. **Resposta fundamentada** -> o LLM recebe só esse contexto, cita cada afirmação (`[C2]` trecho, `[P1]` caminho, `[Q]` consulta) ou diz que não há informação; as citações são conferidas e compõem o nível de confiança.
+
+---
+
+## Fluxo da Aplicação
+
+```mermaid
+flowchart LR
+    Q[Pergunta] --> E[Ligação de entidades<br/>apelidos, siglas, vetor, fulltext]
+    Q --> H[Busca híbrida<br/>vetor + fulltext]
+    Q --> T[Text-to-Cypher<br/>LLM + validação + EXPLAIN]
+    E --> M[Multi-hop<br/>Shortest Path + expansão 2 saltos]
+    A[(PageRank e Louvain<br/>gravados nos nós)] -.prioriza.-> M
+    M --> F[Fusão RRF<br/>trechos C1..Cn + caminhos P1..Pn]
+    H --> F
+    T --> R[(Neo4j<br/>somente leitura)]
+    F --> L[LLM responde<br/>citando C, P e Q]
+    R --> L
+    L --> V[Verificação das citações<br/>e nível de confiança]
+    V --> UI[Interface: resposta, subgrafo,<br/>rota, Cypher, fontes]
+```
+
+| <div align="center">Rota da resposta para "Como a responsabilidade civil se aplica ao erro médico?": pergunta, entidades, nós percorridos nos caminhos citados, trechos e consulta, até a resposta</div> |
+|---|
+| <img src="./docs/assets/rota_resposta.png" width="100%" alt="Grafo da esquerda para a direita: Pergunta, entidades erro médico e responsabilidade civil do médico, caminhos pelo Código de Defesa do Consumidor, trechos C2 a C8 e a consulta Q, convergindo na Resposta"/> |
+
+---
+
+## Dados
+
+O corpus é o dataset público [`celsowm/ambito_juridico_artigos`](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos) (Hugging Face): 11.373 artigos do Âmbito Jurídico em 17 áreas do Direito. A análise exploratória (`analise_ambito_juridico.ipynb`) remove duplicatas (restam ~10,6 mil artigos) e sorteia um subconjunto estratificado por categoria.
+
+| Elemento do grafo | Quantidade |
+|---|---:|
+| Artigos / trechos (`Chunk`) | 1.062 / 14.048 |
+| Conceitos / normas / doutrinadores / instituições | 8.081 / 2.692 / 2.688 / 1.117 |
+| Menções com evidência literal (`MENTIONS`) | 54.021 |
+| Relações entre entidades (`REGULATES`, `SPECIALIZES`, `INTERPRETS`...) | 12.304 |
+| Comunidades Louvain | 367 |
+
+O modelo completo (labels, propriedades, relações, constraints, índices, decisões e limitações) está em [`docs/schema_lpg.md`](./docs/schema_lpg.md).
+
+| <div align="center">Schema LPG exportado do Neo4j Aura</div> |
+|---|
+| <img src="./docs/assets/visualisation.png" width="80%" alt="Labels Article, Chunk, Category, Norm, Institution, Concept e Scholar com seus tipos de relação"/> |
+
+> [!NOTE]
+> A licença do dataset não está declarada no Hugging Face. Os trechos gravados neste repositório (modo demonstração e
+> avaliação) são cortados em 700 caracteres e sempre trazem o link do artigo original.
+
+---
+
+## Resultados
+
+### GraphRAG/KAG x RAG vetorial x LLM puro
+
+Dez perguntas com gabarito (estruturadas, multi-hop e três armadilhas que o corpus não responde, inclusive uma lei inexistente), o mesmo LLM nos três métodos e métricas automáticas, sem LLM juiz:
+
+| Métrica | LLM puro | RAG vetorial | **GraphRAG/KAG** |
+|---|:---:|:---:|:---:|
+| Acerto (gabarito) | 70% | 70% | **100%** |
+| Abstenção correta nas armadilhas | 0% | 100% | **100%** |
+| Abstenção indevida nas respondíveis (menor é melhor) | 0% | 29% | **0%** |
+| Citações válidas | 0% | 100% | **100%** |
+| Frases com fonte | 0% | 56% | **78%** |
+| Respostas com normas sem suporte (menor é melhor) | 80% | 0% | **0%** |
+| Latência mediana | 6,3 s | 10,2 s | 17,5 s |
+
+O RAG vetorial é seguro, mas se absteve em perguntas que tinham resposta (os trechos certos não eram os mais parecidos com a pergunta); o grafo os encontrou pelas entidades e pelos caminhos. O LLM puro acerta boa parte de memória, mas nunca se abstém e cita leis que nada no sistema sustenta. Detalhes por pergunta em [`evaluation/report.md`](./evaluation/report.md).
+
+| <div align="center">Métricas por método (gerado por `graphrag_juridico.evaluation report`)</div> |
+|---|
+| <img src="./evaluation/metrics.png" width="90%" alt="Gráfico de barras com acerto, abstenções, citações válidas, frases com fonte e normas sem suporte por método"/> |
+
+### Algoritmos de grafo e componentes
+
+* **Louvain:** as maiores comunidades recuperam as áreas do Direito **sem supervisão** (direitos fundamentais, responsabilidade civil, mediação, crime organizado, trabalho, seguridade social, meio ambiente...).
+* **PageRank + Louvain na expansão:** na pergunta sobre a LGPD, sem os algoritmos a expansão só traz vizinhos diretos; só com PageRank, puxa conceitos centrais de outros temas (CLT, dano moral); com os dois, traz caminhos de 2 saltos no tema (proteção de dados, privacidade, consentimento).
+* **Text-to-Cypher:** acertou as 3 consultas de referência (7, 1 e 13 resultados) e devolveu 0 linhas na pergunta armadilha.
+* **Ligação de entidades:** "LGPD", siglas como "STF" e números como "Lei nº 13.709/2018" chegam ao nó canônico, o que resolveu o caso em que a busca só por trechos não trazia nada sobre a LGPD.
+
+---
+
+## Funcionalidades
+
+* **Resposta com procedência:** citações destacadas por tipo (trecho, caminho do grafo, consulta), aviso de abstenção e nível de confiança com seus componentes (similaridade vetorial, concordância fulltext, cobertura de caminhos, citações válidas).
+* **Três visões do grafo** em vis-network, com fundo escuro, layout ForceAtlas2, cor pela comunidade (Louvain) e tamanho pelo PageRank:
+  * **subgrafo da resposta**, com as entidades da pergunta em destaque e os caminhos citados em amarelo;
+  * **rota da resposta**, da pergunta à resposta, só com o que foi citado;
+  * **mapa do conhecimento**, com as 1.500 entidades mais centrais, busca, filtro por comunidade e vizinhos do nó clicado.
+* **Rastreabilidade:** trechos com link para o artigo, caminhos em lista, Cypher executada com o resultado da `[Q]`, nós consultados e o JSON completo.
+* **Algoritmos ligáveis:** Shortest Path, PageRank, Louvain e a Cypher do LLM podem ser desligados para comparar o efeito de cada um.
+* **Comparação ao vivo:** a mesma pergunta respondida pelo LLM puro, pelo RAG vetorial e pelo GraphRAG, lado a lado, com as métricas automáticas e uma legenda das siglas das leis.
+* **Modo demonstração:** reproduz execuções reais gravadas, sem banco nem LLM, para apresentar sem internet ou sem cota.
+* **Chave reserva do LLM:** se a cota da chave principal acaba (429/402), as chamadas passam para a `FALLBACK_OPENROUTER_KEY`.
+
+---
+
+## Demonstração
+
+| <div align="center">Subgrafo da resposta para "Qual a relação entre a LGPD e a dignidade da pessoa humana?": entidades da pergunta em destaque e caminhos citados em amarelo</div> |
+|---|
+| <img src="./docs/assets/subgrafo_resposta.png" width="100%" alt="Subgrafo com a Lei 13.709/2018 e a dignidade da pessoa humana em destaque e os caminhos citados em amarelo"/> |
+
+---
+
+## Requisitos da Especificação
+
+| Pilar | Requisito | Onde está |
+|---|---|---|
+| Text-to-Graph | NER/RE automatizado | `scripts/extract_pilot.py` (LLM com evidência literal validada) |
+| | Resolução de entidades | `scripts/resolve_entities.py` (chaves canônicas) |
+| | Esquema orientado ao domínio | `scripts/extraction_schema.py`, [`docs/schema_lpg.md`](./docs/schema_lpg.md) |
+| Neo4j LPG | Labels, relações e propriedades | [`docs/schema_lpg.md`](./docs/schema_lpg.md) |
+| | Constraints e índices BTree, fulltext e vetoriais | `schema.cypher`, `schema_vector.cypher` |
+| Recuperação | Busca híbrida (vetor + Cypher) | `retrieval.py`, `text_to_cypher.py` |
+| | Multi-hop (2+ saltos) | `multihop.py` |
+| | PageRank, Louvain e Shortest Path | `algorithms.py`, `multihop.py` |
+| | Mitigação de alucinação comprovada | `ask.py` (citações e abstenção), `metrics.py`, `evaluation.py`, [`evaluation/report.md`](./evaluation/report.md) |
+| Interface | UI funcional | `app/streamlit_app.py` |
+| | Subgrafo interativo | `graph_view.py` |
+| | Nós consultados, Cypher gerada, confiança | abas da interface e contrato `AskResult` (`contracts.py`) |
+| Qualidade | Testes e CI | `tests/` (151 testes), `.github/workflows/ci.yml` |
+
+---
+
+## Estrutura do Projeto
+
+```
+GraphRAG-KAG-juridico/
+├── src/graphrag_juridico/        # Pacote: o sistema de perguntas
+│   ├── config.py                 # .env, driver Neo4j, chamadas ao LLM com chave reserva
+│   ├── db.py                     # read() em transação somente leitura; write() só para manutenção
+│   ├── contracts.py              # AskResult: o contrato entre recuperação, interface e avaliação
+│   ├── entities.py               # Ligação das entidades da pergunta
+│   ├── retrieval.py              # Busca híbrida de trechos (vetor + fulltext + entidades, RRF)
+│   ├── algorithms.py             # PageRank e Louvain (networkx)
+│   ├── multihop.py               # Shortest Path, expansão 2 saltos, subgrafo e confiança
+│   ├── text_to_cypher.py         # Cypher gerada pelo LLM e validada
+│   ├── ask.py                    # Orquestrador: resposta com citações verificadas
+│   ├── baselines.py              # LLM puro e RAG vetorial (comparação)
+│   ├── metrics.py                # Métricas automáticas de uma resposta
+│   ├── evaluation.py             # Avaliação comparativa, relatório e gráfico
+│   ├── graph_view.py             # Visualizações vis-network (mapa, subgrafo, rota)
+│   ├── mock.py                   # Modo demonstração (execuções gravadas)
+│   └── resources/                # Respostas gravadas e perguntas da avaliação
+├── app/streamlit_app.py          # Interface (camada fina sobre o pacote)
+├── scripts/                      # Pipeline de ingestão: chunking, NER/RE, resolução, carga, embeddings
+├── tests/                        # Testes (rodam sem Neo4j e sem LLM)
+├── evaluation/                   # Relatório e gráfico da avaliação
+├── docs/                         # Schema LPG e figuras
+├── schema.cypher                 # Constraints, índice BTree e índices fulltext
+├── schema_vector.cypher          # Índices vetoriais
+├── docker-compose.yml            # Neo4j local, restauração e geração de dump
+├── analise_ambito_juridico.ipynb # Análise exploratória e amostragem do dataset
+├── pyproject.toml / uv.lock      # Dependências (uv)
+└── .github/workflows/ci.yml      # CI: gitleaks, ruff e pytest
+```
+
+---
+
+## Instalação e Execução
+
+### 1. Pré-requisitos
+
+* Linux, macOS ou Windows com WSL2, e Git
+* [uv](https://docs.astral.sh/uv/getting-started/installation/) (baixa o Python 3.12 sozinho)
+* Um Neo4j com os dados: o **Neo4j Aura** do grupo (credenciais por mensagem privada) **ou** Docker para o banco local a partir do dump
+* Uma chave do [OpenRouter](https://openrouter.ai/) (o plano gratuito permite 50 requisições por dia por conta); não é necessária no modo demonstração
+
+### 2. Clonar o repositório e sincronizar o ambiente
+
+```bash
+git clone https://github.com/MaraLeao/GraphRAG-KAG-juridico.git
+cd GraphRAG-KAG-juridico
+
+uv sync --extra embeddings   # dependências + PyTorch e o bge-m3 (busca vetorial local)
+```
+
+> O extra `embeddings` é necessário para perguntar no modo real (a pergunta é embutida localmente com o bge-m3,
+> ~2 GB baixados na primeira pergunta). Só para o modo demonstração, testes e CI basta `uv sync`.
+> Para um PyTorch só de CPU: `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
+
+### 3. Variáveis de ambiente
+
+```bash
+cp .env.example .env
+```
+
+| Variável | Para quê |
 |---|---|
-| `config.py` | Lê o `.env`; cria o driver Neo4j (`get_driver`) e o cliente LLM (`get_llm`, OpenRouter por padrão, trocável via `LLM_BASE_URL`) |
-| `db.py` | `read()`: executa Cypher em transação **somente leitura** (o Neo4j recusa escrita) |
-| `contracts.py` | Contrato `AskResult` devolvido por `ask()`, consumido pela UI e pela avaliação |
-| `ask.py` | Orquestrador `ask(question)`: recuperação multi-hop + Text-to-Cypher + resposta do LLM citando `[Cn]`, `[Pn]` e `[Q]`, com verificação das citações; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
-| `mock.py` | Modo demonstração: reproduz execuções reais gravadas em `resources/demo_answers.json` (sem banco nem LLM) |
-| `graph_view.py` | Visualizações interativas (vis-network): mapa do conhecimento, subgrafo da resposta e rota da resposta |
-| `baselines.py` | Métodos de comparação: LLM puro (sem contexto) e RAG vetorial (mesmo prompt do GraphRAG, só busca vetorial) |
-| `metrics.py` | Métricas automáticas de uma resposta: citações válidas, frases com fonte, normas sem suporte, abstenção e acerto |
-| `evaluation.py` | Avaliação comparativa no conjunto com gabarito (`resources/evaluation_questions.json`), relatório e gráfico |
-| `algorithms.py` | PageRank e Louvain (networkx) sobre o grafo de entidades, gravados nos nós como `pagerank` e `community` |
-| `retrieval.py` | Busca híbrida de trechos: vetor (`vec_chunk`, bge-m3 local) + fulltext (`ft_chunk`) + trechos das entidades, fundidos por RRF |
-| `entities.py` | Ligação das entidades da pergunta: apelidos de normas ("LGPD"), siglas ("STF"), vetor (`vec_concept`) e fulltext |
-| `multihop.py` | Shortest Path entre as entidades, expansão de 2 saltos priorizada por comunidade e PageRank, subgrafo e confiança |
-| `text_to_cypher.py` | Cypher gerada pelo LLM, validada (somente leitura, schema, `LIMIT`), conferida com `EXPLAIN` e com 1 nova tentativa |
+| `NEO4J_URI`, `NEO4J_USER`, `NEO4J_PASSWORD` | Banco usado pelo sistema (Aura por padrão; no Aura o usuário é o ID da instância) |
+| `NEO4J_LOCAL_PASSWORD` | Senha do Neo4j local criado pelo `docker-compose.yml` |
+| `OPENROUTER_KEY` | Chave do LLM |
+| `FALLBACK_OPENROUTER_KEY` | Opcional: chave de outra conta, usada quando a principal esgota a cota |
+| `CYPHER_MODEL`, `ANSWER_MODEL` | Modelos do OpenRouter para a Cypher e para a resposta |
 
-#### Algoritmos de grafo
+O `.env` nunca vai para o Git; o CI procura segredos em todo PR (gitleaks).
 
-```bash
-uv run python -m graphrag_juridico.algorithms           # calcula e mostra as entidades mais centrais e as comunidades
-uv run python -m graphrag_juridico.algorithms --write   # calcula e grava pagerank/community no banco do .env
-```
+### 4. Banco de dados
 
-Rodam em Python (networkx) para funcionar também no Neo4j Aura Free, que não tem o plugin GDS.
-O `--write` altera o banco: no Aura (compartilhado), combine com o grupo antes.
+**Opção A: Neo4j Aura (compartilhado).** Preencha o bloco do Aura no `.env`. O banco já tem os dados, os índices e o PageRank/Louvain gravados.
 
-#### Recuperação multi-hop
+**Opção B: Neo4j local a partir do dump.** Baixe o `neo4j.dump` (347 MB, com PageRank e comunidades) da
+[pasta do dump no Google Drive](https://drive.google.com/drive/folders/1XbVeD5a3LNzb3W-_x-oAxjnMumq2ujRY?usp=sharing)
+e coloque em `dump/`:
 
 ```bash
-uv run python -m graphrag_juridico.multihop "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
-uv run python -m graphrag_juridico.multihop "pergunta" --no-communities --no-pagerank   # compara sem os algoritmos
+docker compose run --rm restore    # restaura dump/neo4j.dump no volume (Neo4j parado)
+docker compose up -d neo4j         # Browser em http://localhost:7474
 ```
 
-Mostra as entidades ligadas, os caminhos no grafo, os trechos escolhidos (`[C1]...`) e a confiança. Não usa o LLM.
-Na primeira execução baixa o modelo bge-m3 (~2 GB). Entidades citadas por mais de 300 trechos (como a CF/88) não
-servem de ponte nos caminhos. Requer `pagerank`/`community` gravados para priorizar a expansão.
+No `.env`, comente o bloco do Aura e descomente o bloco local. Para gerar um dump novo do banco local:
+`chmod a+w dump` (uma vez) e `docker compose stop neo4j && docker compose run --rm dump && docker compose up -d neo4j`.
 
-#### Text-to-Cypher
+### 5. Rodar a interface
 
 ```bash
-uv run python -m graphrag_juridico.text_to_cypher "Quais instituições interpretam normas que regulam o consentimento?"
+uv run streamlit run app/streamlit_app.py                  # http://localhost:8501
+GRAPHRAG_MOCK=1 uv run streamlit run app/streamlit_app.py  # modo demonstração: sem banco e sem LLM
 ```
 
-Usa o `CYPHER_MODEL` do `.env` (uma requisição ao LLM por tentativa). Consultas com escrita, labels ou relações fora
-do schema e caminhos sem limite são recusadas antes de chegar ao banco; a execução é sempre em transação somente leitura.
-
-#### Perguntas (pipeline completo)
+### 6. Testes e lint
 
 ```bash
-uv run python -m graphrag_juridico.ask "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
-uv run python -m graphrag_juridico.ask "pergunta" --no-cypher    # sem a Cypher do LLM (uma requisição a menos)
+uv run pytest                      # 151 testes, sem Neo4j e sem LLM
+uv run ruff check src/ tests/ app/
 ```
+
+É o mesmo que o CI roda em todo PR. Para adicionar uma dependência: `uv add <pacote>` (ou `uv add --dev <pacote>`) e
+commite o `pyproject.toml` **e** o `uv.lock`; `uv sync --locked` confere se o lock está em dia.
+
+---
+
+## Como Usar
+
+Na interface, digite a pergunta e tecle **Enter** (ou clique num exemplo). Mudar as opções da barra lateral não refaz a pergunta, para não gastar a cota. Cada pergunta usa 2 a 3 requisições ao LLM (4 a 5 com a comparação ligada); repetidas vêm do cache.
+
+Cada etapa também roda pela linha de comando:
+
+| Comando | O que faz | LLM |
+|---|---|:---:|
+| `uv run python -m graphrag_juridico.ask "pergunta"` | Pipeline completo: resposta citada, fontes e confiança (`--no-cypher` economiza uma requisição) | 2 a 3 |
+| `uv run python -m graphrag_juridico.multihop "pergunta"` | Só a recuperação: entidades, caminhos, trechos e confiança (`--no-pagerank`, `--no-communities`, `--no-shortest-path`) | não |
+| `uv run python -m graphrag_juridico.text_to_cypher "pergunta"` | Gera, valida e executa a Cypher | 1 a 2 |
+| `uv run python -m graphrag_juridico.algorithms` | PageRank e Louvain: entidades mais centrais e maiores comunidades (`--write` grava no banco) | não |
+| `uv run python -m graphrag_juridico.evaluation run` | Avaliação: roda o que falta e grava cada resposta (retoma se a cota acabar) | ~45 |
+| `uv run python -m graphrag_juridico.evaluation report` | Gera `evaluation/report.md` e `metrics.png` a partir das respostas gravadas | não |
+| `uv run python -m graphrag_juridico.mock --record` | Regrava as execuções do modo demonstração | 2 a 3 por pergunta |
 
 ```python
 from graphrag_juridico.ask import ask
 from graphrag_juridico.multihop import Options
 
 result = ask("Quais instituições interpretam a LGPD?", options=Options(use_pagerank=False))
-result.answer, result.chunks, result.paths, result.cypher, result.confidence
+result.answer, result.chunks, result.paths, result.cypher, result.cypher_rows, result.confidence
 ```
 
-O LLM (`ANSWER_MODEL`) recebe só o contexto recuperado: trechos `[C1]...`, caminhos do grafo `[P1]...` e o resultado
-da Cypher `[Q]`. Ele deve citar cada afirmação e, se o contexto não bastar, responder "Não há informação suficiente no
-corpus". As citações são conferidas: citar algo fora do contexto reduz o componente `citations` da confiança.
-Cada pergunta usa 2 a 3 requisições ao LLM.
+> [!WARNING]
+> `algorithms --write` grava no banco configurado no `.env`. No Aura, que é compartilhado, combine com o grupo e
+> teste antes no Neo4j local.
 
-#### Interface (Streamlit)
+### Reconstruir o grafo do zero
 
-```bash
-uv run streamlit run app/streamlit_app.py      # rode da raiz do repositório; abre em http://localhost:8501
-```
+O dump evita refazer a extração (que usa o LLM em milhares de trechos). Para reconstruir, na ordem:
 
-- **Perguntar:** resposta com as citações destacadas (trechos `[C]`, caminhos `[P]`, consulta `[Q]`), aviso de
-  abstenção, nível de confiança com seus componentes e o **subgrafo** recuperado. Abaixo: trechos com link para o
-  artigo, a **rota da resposta** (pergunta → entidades → nós percorridos → resposta, só com o que foi citado),
-  a Cypher executada, os nós e o JSON completo.
-- **Mapa do conhecimento:** as entidades mais centrais do grafo (PageRank), coloridas pelas comunidades do Louvain,
-  com busca, filtro por comunidade e vizinhos do nó clicado.
-- **Barra lateral:** liga/desliga Shortest Path, PageRank, Louvain e a Cypher do LLM, para comparar o efeito de cada
-  um. A pergunta só é enviada com Enter (ou clicando num exemplo): mudar as opções não gasta requisições.
-- **Comparar métodos** (barra lateral, +2 requisições): responde também com o LLM puro e com o RAG vetorial e mostra
-  as três respostas lado a lado com as métricas automáticas, tabela e gráfico.
-- **Avaliação:** o resultado consolidado do conjunto de perguntas com gabarito (ver abaixo).
-- **Modo demonstração** (barra lateral ou `GRAPHRAG_MOCK=1`): não usa o Neo4j nem o LLM. As perguntas de exemplo
-  reproduzem execuções reais gravadas, úteis para apresentar sem internet. Para regravar:
-  `python -m graphrag_juridico.mock --record` (2 a 3 requisições por pergunta).
+1. `analise_ambito_juridico.ipynb`: baixa o dataset e gera o subconjunto (`.parquet`).
+2. `uv run python scripts/apply_schema.py schema.cypher`: constraints e índices.
+3. `uv run python scripts/load_structure.py`: artigos, categorias e trechos.
+4. `uv run python scripts/extract_pilot.py`: NER/RE por LLM (`EXTRACTION_MODEL`), gera um `.jsonl`.
+5. `uv run python scripts/load_entities.py <arquivo.jsonl>`: resolução de entidades e carga (`--dry-run` mostra as estatísticas).
+6. `uv run python scripts/embed.py --local` e `uv run python scripts/apply_schema.py schema_vector.cypher`: embeddings e índices vetoriais.
+7. `uv run python -m graphrag_juridico.algorithms --write`: PageRank e Louvain.
 
-#### Avaliação (LLM puro x RAG vetorial x GraphRAG/KAG)
-
-```bash
-python -m graphrag_juridico.evaluation status   # o que já foi gravado
-python -m graphrag_juridico.evaluation run      # roda o que falta (~45 requisições ao LLM; lê o banco)
-python -m graphrag_juridico.evaluation report   # gera evaluation/report.md e evaluation/metrics.png
-```
-
-Dez perguntas com gabarito: estruturadas (gabarito vindo de Cypher de referência), multi-hop e armadilhas que o
-corpus não responde (inclusive uma lei inexistente). Os três métodos usam o mesmo LLM; o RAG vetorial e o GraphRAG,
-o mesmo prompt e as mesmas regras de citação. As métricas (`metrics.py`) não usam LLM: acerto pelo gabarito,
-abstenção correta nas armadilhas, abstenção indevida, citações válidas, frases com fonte e **normas sem suporte**
-(leis citadas que não estão no contexto, indício de alucinação). Cada resposta é gravada assim que chega: se a cota
-acabar, rodar de novo completa só o que falta. As respostas gravadas também alimentam a comparação no modo
-demonstração da interface.
-
-**Cota do LLM:** o plano gratuito do OpenRouter permite 50 requisições por dia **por conta**. Com uma
-`FALLBACK_OPENROUTER_KEY` (de outra conta) no `.env`, as chamadas passam para ela automaticamente quando a principal
-recebe 429/402.
-
-O visual dos grafos (fundo escuro, layout ForceAtlas2, cores por comunidade, barra lateral com busca e legenda) é
-inspirado no [Graphify](https://github.com/Graphify-Labs/graphify); o template é próprio.
-
-## Modelo do grafo (LPG)
-
-Nomes do schema em inglês; valores e conteúdo em português.
-
-**Nós:** `Article`, `Chunk`, `Category`, `Norm`, `Institution`, `Concept`, `Scholar`.
-
-```mermaid
-flowchart LR
-    Category((Category))
-    Article((Article))
-    Chunk((Chunk))
-    Norm((Norm))
-    Institution((Institution))
-    Concept((Concept))
-    Scholar((Scholar))
-
-    Article -->|IN_CATEGORY| Category
-    Article -->|HAS_CHUNK| Chunk
-    Article -->|CITES_NORM| Norm
-    Article -->|CITES_SCHOLAR| Scholar
-    Article -->|ABOUT| Concept
-
-    Chunk -->|MENTIONS| Norm
-    Chunk -->|MENTIONS| Institution
-    Chunk -->|MENTIONS| Concept
-    Chunk -->|MENTIONS| Scholar
-
-    Norm -->|REGULATES| Concept
-    Norm -->|AMENDS| Norm
-    Norm -->|REVOKES| Norm
-    Norm -->|ISSUED_BY| Institution
-    Institution -->|INTERPRETS| Norm
-    Concept -->|SPECIALIZES| Concept
-```
-
-**Relações:**
-
-| Relação | Padrão |
-|---|---|
-| `IN_CATEGORY` | `Article → Category` |
-| `HAS_CHUNK` | `Article → Chunk` |
-| `MENTIONS` | `Chunk → Norm \| Institution \| Concept \| Scholar` (propriedade `evidence`) |
-| `CITES_NORM`, `CITES_SCHOLAR`, `ABOUT` | `Article → Norm \| Scholar \| Concept` (com contagem/peso) |
-| `REGULATES` | `Norm → Concept` |
-| `AMENDS`, `REVOKES` | `Norm → Norm` |
-| `ISSUED_BY` | `Norm → Institution` |
-| `INTERPRETS` | `Institution → Norm` |
-| `SPECIALIZES` | `Concept → Concept` |
-
-Entidades e relações são extraídas por LLM (NER/RE) com exigência de trecho literal de evidência, validadas
-contra o texto do chunk e unificadas por resolução de entidades (chaves canônicas para normas, instituições e conceitos).
-
-Para a descrição completa de labels, relações, constraints e índices, veja [`docs/schema_lpg.md`](docs/schema_lpg.md).
-
-## Como reproduzir
-
-### Requisitos
-
-- Python 3.11+
-- Docker (ou uma instalação do Neo4j **5.11 ou superior**, necessário para índices vetoriais)
-- Opcional: plugin **Graph Data Science** (PageRank, Louvain)
-
-### 1. Ambiente Python (uv)
-
-O projeto usa o [uv](https://docs.astral.sh/uv/) ([instalação](https://docs.astral.sh/uv/getting-started/installation/)).
-As dependências estão no `pyproject.toml` e as versões exatas no `uv.lock`.
-
-```bash
-uv sync                  # cria o .venv, instala as dependências (+ pytest) e o pacote src/graphrag_juridico
-cp .env.example .env     # edite com suas credenciais (nunca faça commit do .env)
-uv run pytest            # roda os testes
-```
-
-Para rodar qualquer comando do projeto, use `uv run` (não precisa ativar o `.venv`):
-
-```bash
-uv run streamlit run app/streamlit_app.py
-uv run python -m graphrag_juridico.ask "pergunta"
-uv run python scripts/embed.py
-```
-
-**Embeddings locais (opcional, pesado).** O `sentence-transformers` puxa o PyTorch (vários GB no Linux) e só é
-necessário para `scripts/embed.py` e para a busca vetorial local. Para instalá-lo: `uv sync --extra embeddings`.
-O notebook de análise usa `uv sync --extra notebook` (matplotlib).
-
-**Adicionar ou atualizar dependências:** `uv add <pacote>` (ou `uv add --dev <pacote>`), e faça commit do
-`pyproject.toml` **e** do `uv.lock`. Para conferir se o lock está em dia: `uv sync --locked`.
-
-> No WSL, o uv baixa o Python sozinho, então não depende do `ensurepip`. Se quiser um PyTorch só de CPU,
-> rode depois do sync: `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
-
-A CI roda o mesmo que você pode rodar localmente antes de abrir um PR: os testes não precisam do `.env`,
-do Neo4j nem do LLM, e o lint usa o [ruff](https://docs.astral.sh/ruff/) (a pasta `scripts/` fica de fora):
-
-```bash
-uv run pytest
-uv run ruff check src/ tests/ app/
-```
-
-### 2. Neo4j com Docker
-
-```bash
-docker run -d --name neo4j-kag \
-  -p 7474:7474 -p 7687:7687 \
-  -e NEO4J_AUTH=neo4j/SUA_SENHA_AQUI \
-  -e 'NEO4J_PLUGINS=["graph-data-science"]' \
-  -v neo4j_kag_data:/data \
-  neo4j:latest
-```
-
-A senha precisa ter 8 caracteres ou mais e deve ser a mesma do `.env`. O Neo4j Browser fica em http://localhost:7474.
-
-### 3. Criar o schema
-
-```bash
-docker exec -i neo4j-kag cypher-shell -u neo4j -p SUA_SENHA_AQUI < schema.cypher
-```
-
-Os índices vetoriais ficam em `schema_vector.cypher`; aplique-os do mesmo modo, depois de ajustar a dimensão do embedding
-(1024 para `BAAI/bge-m3`, 1536 para `text-embedding-3-small`).
-
-### 3.1 Embeddings e busca GraphRAG
-
-```bash
-uv run python scripts/embed.py                                  # embeddings de Chunk e Concept (baai/bge-m3, 1024 dim)
-uv run python scripts/apply_schema.py schema_vector.cypher      # índices vetoriais
-uv run python scripts/graphrag.py "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
-```
-
-`graphrag.py` funde busca vetorial e fulltext (RRF), expande no grafo (entidades citadas e relações
-`REGULATES`/`AMENDS`/`INTERPRETS`/... ignorando super-nós como a CF/88) e gera a resposta citando trechos e relações.
-Use `--no-answer` para ver só a recuperação.
-
-### 3.2 Carregar o banco pronto (dump)
-
-Para não repetir a extração por LLM e os embeddings, o grafo completo (artigos, chunks, entidades, relações e
-embeddings) pode ser restaurado de um dump do Neo4j (`neo4j.dump`, ~318 MB, compartilhado fora do Git porque o
-GitHub limita arquivos a 100 MB). Coloque o arquivo numa pasta, por exemplo `./dump/`, e rode:
-
-```bash
-# 1. restaurar o dump num volume novo (o container do Neo4j não pode estar usando o volume)
-docker run --rm -v neo4j_kag_data:/data -v "$PWD/dump":/backups neo4j:latest \
-  neo4j-admin database load neo4j --from-path=/backups --overwrite-destination=true
-
-# 2. subir o Neo4j com esse volume
-docker run -d --name neo4j-kag -p 7474:7474 -p 7687:7687 \
-  -e NEO4J_AUTH=neo4j/SUA_SENHA_AQUI -e 'NEO4J_PLUGINS=["graph-data-science"]' \
-  -v neo4j_kag_data:/data neo4j:latest
-```
-
-O dump contém o texto dos artigos do Âmbito Jurídico: não publique em repositório aberto sem conferir a licença do
-dataset. Ele não inclui senhas nem chaves. Para gerar um dump novo: pare o container e rode
-`neo4j-admin database dump neo4j --to-path=/backups` num container temporário com o mesmo volume.
-
-### 4. Análise exploratória
-
-Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o dataset do Hugging Face e gera
-`processed_ambito_juridico.parquet`, `piloto_ambito_juridico.parquet` e `subconjunto_ambito_juridico.parquet`
-(arquivos `.parquet` não são versionados).
+---
 
 ## Segurança
 
-- Chaves e senhas ficam no `.env`, ignorado pelo Git. Use `.env.example` como modelo.
-- Não exponha a porta 7687 do Neo4j na internet; para compartilhar o banco, use um usuário somente leitura.
+* Chaves e senhas ficam só no `.env`, ignorado pelo Git; o CI barra segredos com o gitleaks.
+* Toda consulta do sistema roda em transação **somente leitura**: mesmo uma Cypher maliciosa gerada pelo LLM é recusada pelo Neo4j. A escrita (`db.write`) existe só para rotinas de manutenção.
+* Não exponha a porta 7687 do Neo4j na internet; para compartilhar o banco, use um usuário somente leitura.
 
-## Créditos
+---
 
-- Dataset: [celsowm/ambito_juridico_artigos](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos).
-- Neo4j, Neo4j GDS e o SDK `neo4j` para Python.
-- [networkx](https://networkx.org/) (PageRank e Louvain).
-- Modelo de embedding [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) via `sentence-transformers`.
-- LLMs via [OpenRouter](https://openrouter.ai/) (modelos definidos em `CYPHER_MODEL` e `ANSWER_MODEL` no `.env`).
-- [Streamlit](https://streamlit.io/) (interface) e [vis-network](https://visjs.github.io/vis-network/) (grafos interativos).
-- [pytest](https://pytest.org/), [ruff](https://docs.astral.sh/ruff/) e [gitleaks](https://github.com/gitleaks/gitleaks) (testes, lint e varredura de segredos), executados no GitHub Actions.
-- Visual dos grafos inspirado no [Graphify](https://github.com/Graphify-Labs/graphify) (Apache-2.0); nenhum código copiado.
-- Parte do código foi desenvolvida com apoio de assistente de IA (Claude Code), com revisão do grupo.
+## Créditos e Referências
+
+* Dataset: [celsowm/ambito_juridico_artigos](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos) (artigos do [Âmbito Jurídico](https://ambitojuridico.com.br/)).
+* Modelo de embedding [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) via `sentence-transformers`; LLMs via [OpenRouter](https://openrouter.ai/).
+* Visual dos grafos inspirado no [Graphify](https://github.com/Graphify-Labs/graphify) (Apache-2.0); nenhum código copiado.
+
+---
+
+## Autores
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/MaraLeao">
+          <img src="https://avatars.githubusercontent.com/u/115283603?v=4" width="100px;" alt="Maria Clara Gouveia"/><br />
+          <sub><b>Maria Clara Gouveia</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/PLeonLopes">
+          <img src="https://avatars.githubusercontent.com/u/109923335?v=4" width="100px;" alt="Pedro Nícollas Leon Pereira Lopes"/><br />
+          <sub><b>Pedro Nícollas Leon Pereira Lopes</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/irlvinicius">
+          <img src="https://avatars.githubusercontent.com/u/132924336?v=4" width="100px;" alt="Vinícius Vieira de Lima"/><br />
+          <sub><b>Vinícius Vieira de Lima</b></sub>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/Gabril64">
+          <img src="https://avatars.githubusercontent.com/u/133971666?v=4" width="100px;" alt="Gabriel Guberson de Oliveira Alves"/><br />
+          <sub><b>Gabriel Guberson de Oliveira Alves</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/Rick-SF">
+          <img src="https://avatars.githubusercontent.com/u/150028541?v=4" width="100px;" alt="Ricardo Silva Flores"/><br />
+          <sub><b>Ricardo Silva Flores</b></sub>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/eduardoramalhoz">
+          <img src="https://avatars.githubusercontent.com/u/131375484?v=4" width="100px;" alt="Eduardo Ramalho de Oliveira"/><br />
+          <sub><b>Eduardo Ramalho de Oliveira</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p align="center">
+  <sub>Tendências em Ciência da Computação | Bacharelado em Ciência da Computação | Prof. Ricardo Roberto de Lima | 2026</sub>
+</p>
