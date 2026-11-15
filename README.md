@@ -32,6 +32,41 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `contracts.py` | Contrato `AskResult` devolvido por `ask()`, consumido pela UI e pela avaliação |
 | `ask.py` | Orquestrador `ask(question)`; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
 | `mock.py` | Resposta de exemplo no formato do contrato |
+| `algorithms.py` | PageRank e Louvain (networkx) sobre o grafo de entidades, gravados nos nós como `pagerank` e `community` |
+| `retrieval.py` | Busca híbrida de trechos: vetor (`vec_chunk`, bge-m3 local) + fulltext (`ft_chunk`) + trechos das entidades, fundidos por RRF |
+| `entities.py` | Ligação das entidades da pergunta: apelidos de normas ("LGPD"), siglas ("STF"), vetor (`vec_concept`) e fulltext |
+| `multihop.py` | Shortest Path entre as entidades, expansão de 2 saltos priorizada por comunidade e PageRank, subgrafo e confiança |
+| `text_to_cypher.py` | Cypher gerada pelo LLM, validada (somente leitura, schema, `LIMIT`), conferida com `EXPLAIN` e com 1 nova tentativa |
+
+#### Algoritmos de grafo
+
+```bash
+python -m graphrag_juridico.algorithms           # calcula e mostra as entidades mais centrais e as comunidades
+python -m graphrag_juridico.algorithms --write   # calcula e grava pagerank/community no banco do .env
+```
+
+Rodam em Python (networkx) para funcionar também no Neo4j Aura Free, que não tem o plugin GDS.
+O `--write` altera o banco: no Aura (compartilhado), combine com o grupo antes.
+
+#### Recuperação multi-hop
+
+```bash
+python -m graphrag_juridico.multihop "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+python -m graphrag_juridico.multihop "pergunta" --no-communities --no-pagerank   # compara sem os algoritmos
+```
+
+Mostra as entidades ligadas, os caminhos no grafo, os trechos escolhidos (`[C1]...`) e a confiança. Não usa o LLM.
+Na primeira execução baixa o modelo bge-m3 (~2 GB). Entidades citadas por mais de 300 trechos (como a CF/88) não
+servem de ponte nos caminhos. Requer `pagerank`/`community` gravados para priorizar a expansão.
+
+#### Text-to-Cypher
+
+```bash
+python -m graphrag_juridico.text_to_cypher "Quais instituições interpretam normas que regulam o consentimento?"
+```
+
+Usa o `CYPHER_MODEL` do `.env` (uma requisição ao LLM por tentativa). Consultas com escrita, labels ou relações fora
+do schema e caminhos sem limite são recusadas antes de chegar ao banco; a execução é sempre em transação somente leitura.
 
 ## Modelo do grafo (LPG)
 
@@ -149,3 +184,7 @@ Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o da
 
 - Dataset: [celsowm/ambito_juridico_artigos](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos).
 - Neo4j, Neo4j GDS e o SDK `neo4j` para Python.
+- [networkx](https://networkx.org/) (PageRank e Louvain).
+- Modelo de embedding [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) via `sentence-transformers`.
+- LLMs via [OpenRouter](https://openrouter.ai/) (modelos definidos em `CYPHER_MODEL` e `ANSWER_MODEL` no `.env`).
+- Parte do código foi desenvolvida com apoio de assistente de IA (Claude Code), com revisão do grupo.
