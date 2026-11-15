@@ -3,6 +3,8 @@
 `AskResult` é o que `ask()` devolve. A UI e a avaliação dependem só dele.
 Mudanças aqui devem ser combinadas com o grupo antes.
 """
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -45,4 +47,5 @@ class AskResult(BaseModel):
     edges: list[GraphEdge] = []
     paths: list[list[str]] = []          # ex.: ["Lei 13.709/2018", "REGULATES", "consentimento"]
     cypher: list[str] = []               # consultas Cypher executadas (para a UI)
+    cypher_rows: list[dict[str, Any]] = []   # resultado da Cypher gerada pelo LLM ([Q]), se houver
     confidence: Confidence
