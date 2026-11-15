@@ -7,7 +7,28 @@ name = "graphrag-juridico"
 version = "0.1.0"
 description = "GraphRAG/KAG sobre artigos jurídicos com Neo4j e LLMs"
 requires-python = ">=3.11"
-# As dependências ficam em requirements.txt (instale com: uv pip install -r requirements.txt)
+dependencies = [
+    "pandas",
+    "pyarrow",
+    "neo4j",
+    "python-dotenv",
+    "openai",
+    "pydantic",
+    "networkx",
+    "scipy",
+    "streamlit",
+    "huggingface_hub",
+]
+
+[project.optional-dependencies]
+# Embeddings locais (baai/bge-m3). Puxa o PyTorch (grande): só instale se for rodar scripts/embed.py
+# ou a busca vetorial local. Instale com: uv sync --extra embeddings
+embeddings = ["sentence-transformers"]
+# Só para o notebook de análise (analise_ambito_juridico.ipynb)
+notebook = ["matplotlib"]
+
+[dependency-groups]
+dev = ["pytest", "ruff==0.14.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
