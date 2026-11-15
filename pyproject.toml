@@ -18,6 +18,7 @@ dependencies = [
     "scipy",
     "streamlit",
     "huggingface_hub",
+    "matplotlib",
 ]
 
 [project.optional-dependencies]
