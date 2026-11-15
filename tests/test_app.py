@@ -1,4 +1,5 @@
 """Testes de fumaça da interface: abrem o app em modo demonstração (sem Neo4j nem LLM)."""
+import json
 from pathlib import Path
 
 import pytest
@@ -88,3 +89,75 @@ def test_paths_tab_switches_between_route_and_list(app):
 
     assert not app.exception
     assert any(m.value.startswith("**[P1]**") for m in app.markdown)
+
+
+@pytest.fixture
+def recorded_evaluation(monkeypatch, tmp_path):
+    """Gravação falsa da avaliação para a 1ª pergunta de exemplo (M1 no conjunto de avaliação)."""
+    from graphrag_juridico import evaluation, mock
+    from graphrag_juridico.contracts import AskResult, Confidence
+
+    question = DEMO_QUESTIONS[0]
+    llm = AskResult(question=question, answer="A Lei 8.078/1990 garante a dignidade.", confidence=Confidence(score=0))
+    runs = {"M1": {"llm": {"result": llm.model_dump(), "latency": 2.0},
+                   "vector": {"result": mock.mock_ask(question).model_dump(), "latency": 4.0},
+                   "graphrag": {"result": mock.mock_ask(question).model_dump(), "latency": 15.0}}}
+    path = tmp_path / "evaluation_results.json"
+    path.write_text(json.dumps(runs), "utf-8")
+    monkeypatch.setattr(mock, "EVALUATION_FILE", path)
+    monkeypatch.setattr(evaluation, "RESULTS_FILE", path)
+    mock.recorded.cache_clear()
+    yield
+    mock.recorded.cache_clear()
+
+
+def test_comparison_shows_the_three_methods_side_by_side(recorded_evaluation, app):
+    app.sidebar.toggle[1].set_value(True).run()          # "Comparar com LLM puro e RAG vetorial"
+    app.button[0].click().run()
+
+    assert not app.exception
+    texts = " ".join(m.value for m in app.markdown)
+    assert all(name in texts for name in ("**LLM puro**", "**RAG vetorial**", "**GraphRAG/KAG**"))
+    assert "Lei 8.078/1990" in texts                                   # norma do LLM puro sem suporte
+
+
+def test_comparison_not_recorded_shows_a_notice(app):
+    app.sidebar.toggle[1].set_value(True).run()
+    ask_by_enter(app)
+
+    assert not app.exception
+    assert any("comparação não gravada" in w.value for w in app.warning)
+
+
+def test_evaluation_tab_summarizes_recorded_runs(recorded_evaluation, app):
+    assert not app.exception
+    assert any(len(df.value) >= 6 for df in app.dataframe)            # tabela de métricas por método
+    labels = [e.label for e in app.expander]
+    assert any(label.startswith("📖 Siglas e leis citadas") for label in labels)   # dropdown fechado
+    assert "ℹ️ Como ler as métricas" in labels
+
+
+def test_quota_error_in_a_baseline_keeps_the_graphrag_answer(app, monkeypatch):
+    """Modo real com dublês: o LLM puro esgota a cota, o RAG vetorial responde e o GraphRAG não se perde."""
+    from graphrag_juridico import ask as ask_module
+    from graphrag_juridico import evaluation, mock
+
+    class QuotaExceeded(Exception):
+        status_code = 429
+
+    def fake_run_method(method, question):
+        if method == "llm":
+            raise QuotaExceeded("Rate limit exceeded: free-models-per-day")
+        return {"result": mock.mock_ask(question).model_dump(), "latency": 3.0, "context_norms": []}
+
+    monkeypatch.setattr(ask_module, "ask", lambda q, **kw: mock.mock_ask(q))
+    monkeypatch.setattr(evaluation, "run_method", fake_run_method)
+    app.sidebar.toggle[0].set_value(False)                 # modo real
+    app.sidebar.toggle[1].set_value(True).run()            # comparação ligada
+    ask_by_enter(app, "Pergunta com cota esgotada no LLM puro")
+
+    assert not app.exception and not app.error
+    assert any("cota do LLM esgotada" in w.value for w in app.warning)
+    assert app.metric                                       # a resposta do GraphRAG continua na tela
+    texts = " ".join(m.value for m in app.markdown)
+    assert "**RAG vetorial**" in texts and "**LLM puro**" not in texts
