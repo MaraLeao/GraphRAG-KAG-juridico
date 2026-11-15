@@ -1,0 +1,1632 @@
+[
+ {
+  "question": "Qual a relação entre a LGPD e a dignidade da pessoa humana?",
+  "answer": "A LGPD (Lei 13.709/2018) relaciona-se à dignidade da pessoa humana como norma que a regula e protege: o grafo registra a aresta Lei 13.709/2018 -[REGULATES]-> dignidade da pessoa humana [P1], com a evidência \"os direitos humanos, o livre desenvolvimento da personalidade, a dignidade e o exercício da cidadania pelas pessoas naturais\", em uma única ocorrência de regulação [Q]. Os trabalhos vinculados a essa relação são os que tratam dos impactos da LGPD no Direito Coletivo do Trabalho e da proteção de dados extensível à pessoa jurídica de direito privado [Q], [C4], [C8].\n\nConcretamente, a lei protege a dignidade ao blindar os elementos mais íntimos da pessoa: os dados pessoais sensíveis (origem racial ou étnica, convicção religiosa, opinião política, filiação sindical, saúde, vida sexual, dado genético ou biométrico) recebem tratamento especial dos arts. 11 a 13, justamente para \"evitar práticas discriminatórias por parte de quem os transaciona\" [C8]. O art. 17 assegura a titularidade dos dados junto aos direitos fundamentais de liberdade e intimidade [C8]. O grafo também liga a lei ao princípio da não-discriminação [P8] e à privacidade, que especializa a proteção de dados pessoais [P5].\n\nEssa conexão é coerente com o estatuto da dignidade no corpus: fundamento do Estado Democrático de Direito, previsto no art. 1º, III, da CF/88, e norma central de todo o ordenamento [C5], que garante tratamento igualitário e não discriminação [C3] e a fruição dos direitos fundamentais e o pleno desenvolvimento da personalidade [C5].\n\nNo plano trabalhista, como a LGPD não foi concebida para as relações de trabalho, há lacunas que exigem a atuação do direito coletivo para reduzir a assimetria entre empregado e empregador no tratamento de dados [C4].",
+  "chunks": [
+   {
+    "id": "141d39eb9706:4",
+    "text": "povo judeu durante o regime nazista. A falta de liberdadereduziu o homem à situação de coisa, seja do escravo em relação ao seu proprietário, seja do judeu em relação ao seu opressor. Pode-se dizer, com margem de certeza bastante larga, que há uma íntima relação entre liberdade e dignidade: sem aquela, a pessoa humana encontra-se destituída desta. A possibilidade de escolha de seu próprio destino não se faz possível, caso o Homem não possua liberdade. Nesse contexto, estabelecendo um ponto de partida essencialmente delimitador e para fins estritos deste trabalho acadêmico, poder-se-ia dizer que a história bíblica do pecado original, do livre-arbítrio de Adão em provar ou não dofruto [...]",
+    "article_title": "O postulado da Dignidade da Pessoa Humana e sua manifestação nos contratos administrativos por meio do vetor boa-fé objetiva",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-administrativo/o-postulado-da-dignidade-da-pessoa-humana-e-sua-manifestacao-nos-contratos-administrativos-por-meio-do-vetor-boa-fe-objetiva/",
+    "score": 0.7941270470619202
+   },
+   {
+    "id": "141d39eb9706:5",
+    "text": "desprovidosdo valor dignidade da pessoa humana? A resposta a tal questionamento passa pela compreensão do adequado significado do valor dignidade da pessoa humana. 3.2 A dignidade da pessoa humana e seu significado Immanuel Kant[9] traz em um trecho de uma de suas Críticas, um valioso auxílio para o entendimento do significado do valor dignidade da pessoa humana: “Que, na ordem dos fins, o homem (e com ele todo o ser racional) seja um fim em si mesmo, isto é, não possa nunca ser utilizado por alguém (nem mesmo por Deus) apenas como um meio, sem ao mesmo tempo ser um fim; que, portanto, a humanidade,em nossapessoa, deve ser para nós sagrada, é a consequência disso, pois o homem é o sujeito [...]",
+    "article_title": "O postulado da Dignidade da Pessoa Humana e sua manifestação nos contratos administrativos por meio do vetor boa-fé objetiva",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-administrativo/o-postulado-da-dignidade-da-pessoa-humana-e-sua-manifestacao-nos-contratos-administrativos-por-meio-do-vetor-boa-fe-objetiva/",
+    "score": 0.7885656952857971
+   },
+   {
+    "id": "ea8960d455bf:4",
+    "text": "A sexualidade e suas manifestações integram e completam o agregado da personalidade humana e como tal deve ser tutelada pelo ordenamento jurídico com vistas à proteção da dignidade da pessoa humana. Nesse sentido: “O princípio da dignidade da pessoa humana identifica um espaço de integridade moral a ser assegurado a todas as pessoas por sua só existência no mundo. É um respeito à criação, independentemente da crença que se professe quanto à sua origem. A dignidade relaciona se tanto com a liberdade e valores do espírito como com as condições materiais de subsistência”. (BARROSO, 2003, p. 323) Este princípio garante a toda e qualquer pessoa o direito a um tratamento igualitário, ou seja, o [...]",
+    "article_title": "Os homossexuais e o preconceito no mercado de trabalho frente aos princípios constitucionais",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-constitucional/os-homossexuais-e-o-preconceito-no-mercado-de-trabalho-frente-aos-principios-constitucionais/",
+    "score": 0.7942721843719482
+   },
+   {
+    "id": "38cad1b3e69d:0",
+    "text": "Introdução A lei 13.709/2018, Lei Geral de Proteção de Dados (LGPD), dispõe sobre o tratamento de dados da pessoa natural realizado em todas as searas da sociedade. Uma das áreas em que mais encontra eco é nas relações de trabalho. Isso se dá porque para a execução dos contratos de trabalho é imprescindível que os dados do empregado sejam manejados constantemente. Nesse sentido, é fundamental avaliar os impactos da LGPD no âmbito justrabalhista, uma vez que nesse “terreno” a legislação de proteção de dados encontra ampla aplicabilidade. Dentre as questões passíveis de serem enfrentadas pelo direito do trabalho quanto aos termos da LGDP estão o consentimento do trabalhador e o peso que tal [...]",
+    "article_title": "Os impactos da Lei Geral de Proteção de Dados no Direito Coletivo do Trabalho",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-do-trabalho/lei-geral-de-protecao-de-dados-direito-do-trabalho/",
+    "score": 0.7681373357772827
+   },
+   {
+    "id": "a07367a49cff:0",
+    "text": "Resumo: O presente texto, em que pese de forma breve, objetiva-se a tratar do princípio da dignidade da pessoa humana como fundamento jurídico da bioética. O princípio da dignidade da pessoa humana[1], fundamento do Estado Democrático de Direito, esculpido na Carta Constitucional de 1988 em seu Art. 1, inciso III, é norma constitucional[2] central de todo o ordenamento jurídico. Neste cenário, importante referir que tal princípio há de ser visto sob a dimensão da plenitude ou amplitude. Plenitude, esta, que significa dizer que o ser humano merece reconhecimento na sua parte mais íntima e no seu todo mais amplo. Neste sentido, posiciona-se Maria Cristina Cereser Pezzella, “Compreender a [...]",
+    "article_title": "O Princípio da Dignidade da Pessoa Humana como fundamento jurídico para Bioética",
+    "link": "https://ambitojuridico.com.br/edicoes/revista-91/o-principio-da-dignidade-da-pessoa-humana-como-fundamento-juridico-para-bioetica/",
+    "score": 0.7932426929473877
+   },
+   {
+    "id": "ea8960d455bf:6",
+    "text": "a relação de causalidade entre este e a conduta da empregadora, impondo-se a confirmação da sentença quanto à indenização por dano moral. Incidência do artigo 5º, inciso X, da Constituição Federal, bem como dos artigos 186 e 927, ambos do Código Civil.” (RS, 2008b, p.01) Portanto, fica evidente que o objetivo deste princípio é promover e garantir o respeito às diferenças, aceitando o fato de que cada ser humano/trabalhador é único, e todos compartilham e participam dos mesmos direitos e deveres. Cabe ressaltar que para Petry Junior, (2007, p. 96), “[…] a dignidade é princípio que, por sua dimensão e importância, alcança todas as pessoas, […] pois, afinal, como se viu, todos são iguais [...]",
+    "article_title": "Os homossexuais e o preconceito no mercado de trabalho frente aos princípios constitucionais",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-constitucional/os-homossexuais-e-o-preconceito-no-mercado-de-trabalho-frente-aos-principios-constitucionais/",
+    "score": 0.7919042706489563
+   },
+   {
+    "id": "144546599570:5",
+    "text": "de pessoa (com dignidade) no âmbito de uma comunidade. As transformações sociais que devem ser executadas pelo estado social e democrático de direito não podem buscar adaptar o indivíduo à sociedade, porém, em sentido contrário, buscam adaptar o espaço social para acolher o indivíduo. O reconhecimento e a proteção da dignidade da pessoa humana, pela ordem jurídica, devem zelar para que todos recebam igual (já que todos são iguais em dignidade) consideração e respeito por parte do Estado e da comunidade. Verifica-se, assim, a particular situação dos presos que, por ser encarcerados, não são tratados de forma benéfica, mas devem ser tratados com dignidade, na condição de seres humanos, não [...]",
+    "article_title": "Democracia dos massacres no ambiente prisional brasileiro",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-ambiental/democracia-dos-massacres-no-ambiente-prisional-brasileiro/",
+    "score": 0.791890025138855
+   },
+   {
+    "id": "1842069a9b0e:5",
+    "text": "VI – transparência: garantia, aos titulares, de informações claras, precisas e facilmente acessíveis sobre a realização do tratamento e os respectivos agentes de tratamento, observados os segredos comercial e industrial; VII – segurança: utilização de medidas técnicas e administrativas aptas a proteger os dados pessoais de acessos não autorizados e de situações acidentais ou ilícitas de destruição, perda, alteração, comunicação ou difusão; VIII – prevenção: adoção de medidas para prevenir a ocorrência de danos em virtude do tratamento de dados pessoais; IX – não discriminação: impossibilidade de realização do tratamento para fins discriminatórios ilícitos ou abusivos; X – responsabilização [...]",
+    "article_title": "A proteção de dados extensível a pessoa jurídica de direito privado",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/a-protecao-de-dados-extensivel-a-pessoa-juridica-de-direito-privado/",
+    "score": 0.7689588665962219
+   }
+  ],
+  "nodes": [
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "label": "Norm",
+    "name": "Lei 13.709/2018",
+    "pagerank": 0.0001147657217233011,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "label": "Concept",
+    "name": "dignidade da pessoa humana",
+    "pagerank": 0.009021983433637769,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15388",
+    "label": "Concept",
+    "name": "justiça social",
+    "pagerank": 0.00040325072883109266,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "label": "Concept",
+    "name": "proteção de dados pessoais",
+    "pagerank": 0.0003235482527356306,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "label": "Norm",
+    "name": "Código de Defesa do Consumidor",
+    "pagerank": 0.00034616332342567245,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "label": "Concept",
+    "name": "privacidade",
+    "pagerank": 0.0008161419191051573,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "label": "Concept",
+    "name": "consentimento",
+    "pagerank": 0.0001498712139967304,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "label": "Concept",
+    "name": "validade dos tratados",
+    "pagerank": 0.0002980354186971801,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "label": "Concept",
+    "name": "princípio da não-discriminação",
+    "pagerank": 0.00013964308830823988,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "label": "Concept",
+    "name": "proteção de dados",
+    "pagerank": 0.00013054560091256017,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15561",
+    "label": "Concept",
+    "name": "dano moral",
+    "pagerank": 0.0022229303701107313,
+    "community": 1
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15490",
+    "label": "Concept",
+    "name": "direito fundamental",
+    "pagerank": 0.0046096242727057665,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19471",
+    "label": "Concept",
+    "name": "liberdade de expressão",
+    "pagerank": 0.001972387818380625,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19950",
+    "label": "Concept",
+    "name": "liberdade de imprensa",
+    "pagerank": 0.003636199976170792,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "label": "Concept",
+    "name": "direitos sociais",
+    "pagerank": 0.002885316835401112,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15260",
+    "label": "Norm",
+    "name": "Lei 8.213/1991",
+    "pagerank": 0.001321544276576146,
+    "community": 6
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20064",
+    "label": "Concept",
+    "name": "mínimo existencial",
+    "pagerank": 6.810231130889574e-05,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15844",
+    "label": "Norm",
+    "name": "Declaração Universal dos Direitos Humanos",
+    "pagerank": 6.347251120016392e-05,
+    "community": 8
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20328",
+    "label": "Concept",
+    "name": "direito à moradia",
+    "pagerank": 0.0002719997865375543,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20380",
+    "label": "Concept",
+    "name": "direitos humanos fundamentais",
+    "pagerank": 0.001133321113110332,
+    "community": 5
+   }
+  ],
+  "edges": [
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15388",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15561",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15561",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15490",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:19471",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:19950",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:19471",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15260",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15260",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20064",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20064",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15844",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15844",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20328",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20328",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15339",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20380",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15705",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20380",
+    "type": "SPECIALIZES"
+   }
+  ],
+  "paths": [
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "dignidade da pessoa humana"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "justiça social"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados pessoais",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados pessoais"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "privacidade",
+    "<-[SPECIALIZES]-",
+    "proteção de dados pessoais"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "consentimento",
+    "-[SPECIALIZES]->",
+    "validade dos tratados"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "consentimento"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "princípio da não-discriminação"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "dano moral",
+    "-[SPECIALIZES]->",
+    "direito fundamental"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "liberdade de expressão",
+    "<-[SPECIALIZES]-",
+    "liberdade de imprensa"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "direitos sociais"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[REGULATES]-",
+    "Lei 8.213/1991",
+    "-[REGULATES]->",
+    "direitos sociais"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "mínimo existencial",
+    "-[SPECIALIZES]->",
+    "direitos sociais"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[REGULATES]-",
+    "Declaração Universal dos Direitos Humanos",
+    "-[REGULATES]->",
+    "direitos sociais"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "<-[SPECIALIZES]-",
+    "direito à moradia",
+    "-[SPECIALIZES]->",
+    "direitos sociais"
+   ],
+   [
+    "dignidade da pessoa humana",
+    "-[SPECIALIZES]->",
+    "direitos humanos fundamentais",
+    "<-[SPECIALIZES]-",
+    "direitos sociais"
+   ]
+  ],
+  "cypher": [
+   "MATCH (n:Norm {id: 'lei:13709:2018'})-[r:REGULATES]->(c:Concept)\nWHERE toLower(c.name) CONTAINS 'dignidade da pessoa humana'\nOPTIONAL MATCH (a:Article)-[:CITES_NORM]->(n), (a)-[:ABOUT]->(c)\nRETURN DISTINCT n.name AS norma, c.name AS conceito,\n       r.evidence AS evidencia, r.times AS vezes_regulacao,\n       collect(DISTINCT a.title) AS artigos LIMIT 25",
+   "MATCH (a) WHERE elementId(a) = $source\nMATCH (b) WHERE elementId(b) = $target\nMATCH p = shortestPath((a)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES|MENTIONS*..4]-(b))\nWHERE none(n IN nodes(p) WHERE elementId(n) IN $blocked)\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels",
+   "UNWIND $ids AS sid\nCALL (sid) {\n  MATCH (e) WHERE elementId(e) = sid\n  MATCH p = (e)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES*1..2]-(o)\n  WHERE none(n IN tail(nodes(p)) WHERE elementId(n) IN $blocked)\n  WITH p, o,\n       CASE WHEN $use_communities AND o.community = e.community THEN 1 ELSE 0 END AS same_community,\n       CASE WHEN $use_pagerank THEN coalesce(o.pagerank, 0.0) ELSE 0.0 END AS centrality\n  ORDER BY same_community DESC, centrality DESC, length(p)\n  LIMIT $per_entity\n  RETURN p\n}\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels"
+  ],
+  "confidence": {
+   "score": 0.8529,
+   "components": {
+    "vector": 0.7939,
+    "fulltext": 0.5,
+    "path": 1.0,
+    "citations": 1.0
+   }
+  }
+ },
+ {
+  "question": "Quais instituições interpretam normas que regulam o consentimento?",
+  "answer": "Segundo a consulta estruturada [Q], as instituições que interpretam normas que regulam o consentimento são:\n\n- Supremo Tribunal Federal [Q]\n- Suprema Corte holandesa [Q]\n- Superior Tribunal de Justiça [Q]\n- Tribunal Regional Federal da 1ª Região [Q]\n- Tribunal Regional Federal (sem especificação de região) [Q]\n- Tribunal Regional Federal da 4ª Região [Q]\n- Tribunal de Justiça de Minas Gerais [Q]\n- Tribunal de Justiça de São Paulo [Q]\n- Tribunal de Justiça do Estado do Paraná [Q]\n- Poder Judiciário [Q]\n- Advocacia-Geral da União [Q]\n- Vara da Infância e Juventude [Q]\n- Agência Nacional de Proteção de Dados [Q]\n\nAs normas que regulam o consentimento, segundo o grafo, incluem a Lei 13.709/2018 (LGPD), que regula o consentimento e, por meio dele, a proteção de dados pessoais [P1], a proteção de dados [P4], os dados pessoais [P6], o princípio da não-discriminação [P3] e a autodeterminação informativa [P5], além de a LGPD regular diretamente o consentimento [P7]; o consentimento também especializa a validade dos tratados [P2]. No plano europeu, a RGPD regula o consentimento e foi instituída/emitida pelo Comitê Europeu para a Proteção de Dados [P8], ao qual o corpus atribui a edição de diretrizes sobre a materialização do consentimento livre de coação [C1].\n\nObservação: a consulta [Q] não detalha quais normas específicas cada instituição interpreta, nem vincula cada instituição a um trecho do corpus.",
+  "chunks": [
+   {
+    "id": "38cad1b3e69d:8",
+    "text": "titular dos dados. Na legislação de proteção de dados europeia, a questão do consentimento tem importância tamanha que foi objeto de inúmeras discussões até que seus termos fossem pormenorizados afim de evitar equívocos que invalidem a sua manifestação. O Comitê Europeu para a Proteção de Dados, instituído pela RGPD, indicou diretrizes apontando para as formas de o consentimento se materializar livre de qualquer tipo de coação, devendo o tratamento de dados observar os direitos fundamentais do titular (CARLOTO, 2020, p. 86). O consentimento tratado na legislação brasileira, fundamental para o tratamento de dados no contexto do emprego, é definido pela LGPD como “manifestação livre, [...]",
+    "article_title": "Os impactos da Lei Geral de Proteção de Dados no Direito Coletivo do Trabalho",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-do-trabalho/lei-geral-de-protecao-de-dados-direito-do-trabalho/",
+    "score": 0.7818546295166016
+   },
+   {
+    "id": "f18ad994411e:7",
+    "text": "cujas repercussões limitam-se a sua esfera física e refletem diretamente em sua perspectiva do que vem a ser uma vida digna e feliz, sob a escusa de proteger a sua sobrevivência? Ou ainda, quais serão os parâmetros utilizados pelos juízes para definir aquilo que corresponde ao entendimento de qualidade de vida de outra pessoa? Portanto, parece pertinente que caso um paciente opte pela não realização da intervenção médica ou cirúrgica, ainda que essa preferência acarrete em prejuízo a sua vida, essa escolha deve prevalecer e ser respeitada, haja vista que apenas ele tem condições de definir aquilo que traz sentido para sua vida e agrega qualidade a sua existência, a partir de suas crenças e [...]",
+    "article_title": "Intervenção Médica Ou Cirúrgica Sem Consentimento Do Paciente Quando Justificada Por Iminente Perigo De Vida: Uma Análise Jurídico-Penal Da Restrição Estatal Ao Direito À Liberdade",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-penal/intervencao-medica-ou-cirurgica-sem-consentimento-do-paciente-quando-justificada-por-iminente-perigo-de-vida-uma-analise-juridico-penal-da-restricao-estatal-ao-direito-a-liberdade/",
+    "score": 0.7757421135902405
+   },
+   {
+    "id": "38cad1b3e69d:9",
+    "text": "empregado ao empregador e, ainda, a assimetria entre essas partes. Para que o consentimento seja considerado legítimo o titular (trabalhador) precisa ter liberdade para decidir se quer conceder seus dados, quais dados autoriza que sejam tratados ou se não tem interesse em aceitar o tratamento, sem o receio de sofrer represálias. O trabalhador não pode ser coagido a ceder seus dados para tratamento, em especial se esse processo for capaz de gerar prejuízos à execução do contrato de trabalho ou, até mesmo, de promover algum tipo de discriminação contra ele (o que iria de encontro ao princípio da não discriminação previsto na LGPD). Uma vez que a LGPD determina os termos nos quais o tratamento [...]",
+    "article_title": "Os impactos da Lei Geral de Proteção de Dados no Direito Coletivo do Trabalho",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-do-trabalho/lei-geral-de-protecao-de-dados-direito-do-trabalho/",
+    "score": 0.7390664219856262
+   },
+   {
+    "id": "fda9daf9aa69:8",
+    "text": "públicas de quem poderá promover a tutela extrajudicial desse direito. Frente a essa situação, a doutrina divide-se e diversos posicionamentos aparecem. Assim, uma primeira vertente é defendida em sede doutrinária por Paulo Cezar Pinheiro Carneiro[36], no sentido de que a lei concede legitimidade apenas aos órgãos públicos elencados, vedando sua fixação pelas associações. Uma segunda vertente, capitaneada por Hugo Nigro Mazzilli, entende ser necessária a subdivisão em: a)Entes que incontroversamente podem fixar o termo de ajustamento de conduta: aqui estariam incluídos, segundo o autor, o Ministério Público, a União, os estados, os municípios o distrito federal e os órgãos públicos. b)Entes [...]",
+    "article_title": "Apontamentos sobre o compromisso de ajustamento de conduta na lei de improbidade administrativa e no projeto de lei da ação civil pública",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-processual-civil/apontamentos-sobre-o-compromisso-de-ajustamento-de-conduta-na-lei-de-improbidade-administrativa-e-no-projeto-de-lei-da-acao-civil-publica/",
+    "score": 0.789681077003479
+   },
+   {
+    "id": "e0dd457ccf41:3",
+    "text": "materiais, o respeito e a observância aos princípios gerais de direito, à matéria que pode ser inserida no ato – restrita a temas administrativos e instrumentais – e a necessária irretroatividade dos termos regulamentares, que deverão ser aplicados apenas a situações futuras. Sendo assim, o decreto regulamentar é de competência exclusiva do Chefe do Poder Executivo, não pode inovar a ordem jurídica criando obrigações aos administrados e, tampouco, contrariar os termos da lei. Na elaboração do decreto deve ser assegurada a participação popular para que setores da sociedade ligados ao conteúdo do ato possam legitimar a sua produção. As disposições regulamentares devem observar os princípios [...]",
+    "article_title": "Do abuso do poder-dever regulamentar na expedição do Decreto Federal n.º 8.124, de 17 de outubro de 2013. Análise do decreto frente às leis federais n.º 11.904, de 14 de janeiro de 2009 e n.º 11.906, de 20 de janeiro de 2009",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-administrativo/do-abuso-do-poder-dever-regulamentar-na-expedicao-do-decreto-federal-n-8-124-de-17-de-outubro-de-2013-analise-do-decreto-frente-as-leis-federais-n-11-904-de-14-de-janeiro-de-2009-e-n-11-906-de-20-de-j/",
+    "score": 0.7385799288749695
+   },
+   {
+    "id": "f18ad994411e:9",
+    "text": "estar social (BARROSO, 2010). Inicialmente pode soar paradoxal, no entanto, deve-se compreender que não basta conferir aos indivíduos o direito à liberdade de escolha, autonomia, sem que lhes sejam ofertadas condições que o auxiliem nesse processo volitivo. Em outras palavras, no que concerne ao consentimento do paciente, não é suficiente lhe conceder a oportunidade de consentir ou não, o que é reflexo do seu direito à liberdade, deve-se, ainda, garantir que esse possua o necessário discernimento das implicações de suas escolhas. Assim, fala-se em consentimento informado, por meio do qual o profissional médico que assiste o paciente deve, de maneira objetiva e com linguagem acessível, [...]",
+    "article_title": "Intervenção Médica Ou Cirúrgica Sem Consentimento Do Paciente Quando Justificada Por Iminente Perigo De Vida: Uma Análise Jurídico-Penal Da Restrição Estatal Ao Direito À Liberdade",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-penal/intervencao-medica-ou-cirurgica-sem-consentimento-do-paciente-quando-justificada-por-iminente-perigo-de-vida-uma-analise-juridico-penal-da-restricao-estatal-ao-direito-a-liberdade/",
+    "score": 0.7834282517433167
+   },
+   {
+    "id": "098d92e06d55:11",
+    "text": "garantir um mínimo de unidade sistemática, buscando subordinar todo o direito privado à orien­tação unificadora da Constituição. “O papel unificador do sistema […] é de­sempenhado de maneira cada vez mais incisiva pelo Texto Constitucional” (SARLET, 2006, p. 42). Começa a ser superada a crença de que as normas jurídicas, em ge­ral, e as normas constitucionais, em particular, tragam sempre, um sentido único, objetivo, válido para todas as situações sobre as quais incidem, bem como que caberia ao intérprete uma atividade de mera revelação do conteú­do preexistente na norma, sem desempenhar qualquer papel criativo na sua concretização. Um novo paradigma evidencia-se, sob o qual, as cláusulas [...]",
+    "article_title": "Reflexões sobre o direito civil constitucional e a eficácia horizontal dos direitos fundamentais",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-constitucional/reflexoes-sobre-o-direito-civil-constitucional-e-a-eficacia-horizontal-dos-direitos-fundamentais/",
+    "score": 0.7465447187423706
+   },
+   {
+    "id": "cdef769a5a89:2",
+    "text": "agosto de 2009 a denominação do Título VI (Dos Crimes Conta os Costumes) foi substituída para “Dos Crimes Contra a Dignidade Sexual”, alterando substancialmente o bem jurídico tutelado, passando então a considerar a dignidade, sob aspecto da liberdade sexual do indivíduo, como o bem mais relevante a ser protegido. Prado afirma que: “(…) a liberdade sexual constitui na capacidade do sujeito de dispor livremente de seu próprio corpo à prática sexual, ou seja, a faculdade de se comportar no plano sexual segundo seus próprios desejos, tanto no tocante à relação em si, como no concernente à escolha de seu parceiro; (…) de se negar a executar ou a tolerar a realização por parte de outro de atos [...]",
+    "article_title": "A gravidez indesejada proveniente do estupro praticado pela mulher e a possibilidade de aplicação do aborto sentimental",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-penal/a-gravidez-indesejada-proveniente-do-estupro-praticado-pela-mulher-e-a-possibilidade-de-aplicacao-do-aborto-sentimental/",
+    "score": 0.7522640228271484
+   }
+  ],
+  "nodes": [
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "label": "Concept",
+    "name": "consentimento",
+    "pagerank": 0.0001498712139967304,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "label": "Norm",
+    "name": "Lei 13.709/2018",
+    "pagerank": 0.0001147657217233011,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "label": "Concept",
+    "name": "proteção de dados pessoais",
+    "pagerank": 0.0003235482527356306,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "label": "Concept",
+    "name": "validade dos tratados",
+    "pagerank": 0.0002980354186971801,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "label": "Concept",
+    "name": "princípio da não-discriminação",
+    "pagerank": 0.00013964308830823988,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "label": "Concept",
+    "name": "proteção de dados",
+    "pagerank": 0.00013054560091256017,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23285",
+    "label": "Concept",
+    "name": "autodeterminação informativa",
+    "pagerank": 0.00012408237181658744,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23265",
+    "label": "Concept",
+    "name": "dados pessoais",
+    "pagerank": 0.00012023436341237814,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:17046",
+    "label": "Norm",
+    "name": "RGPD",
+    "pagerank": 6.067645403041081e-05,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:18847",
+    "label": "Institution",
+    "name": "Comitê Europeu para a Proteção de Dados",
+    "pagerank": 8.646529621055376e-05,
+    "community": 7
+   }
+  ],
+  "edges": [
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23285",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23265",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:17046",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:17046",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:18847",
+    "type": "ISSUED_BY"
+   }
+  ],
+  "paths": [
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados pessoais"
+   ],
+   [
+    "consentimento",
+    "-[SPECIALIZES]->",
+    "validade dos tratados"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "princípio da não-discriminação"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "autodeterminação informativa"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "dados pessoais"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "Lei 13.709/2018"
+   ],
+   [
+    "consentimento",
+    "<-[REGULATES]-",
+    "RGPD",
+    "-[ISSUED_BY]->",
+    "Comitê Europeu para a Proteção de Dados"
+   ]
+  ],
+  "cypher": [
+   "MATCH (i:Institution)-[:INTERPRETS]->(n:Norm)-[:REGULATES]->(c:Concept)\nWHERE toLower(c.name) CONTAINS 'consentimento'\nRETURN DISTINCT i.name AS instituicao LIMIT 25",
+   "MATCH (a) WHERE elementId(a) = $source\nMATCH (b) WHERE elementId(b) = $target\nMATCH p = shortestPath((a)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES|MENTIONS*..4]-(b))\nWHERE none(n IN nodes(p) WHERE elementId(n) IN $blocked)\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels",
+   "UNWIND $ids AS sid\nCALL (sid) {\n  MATCH (e) WHERE elementId(e) = sid\n  MATCH p = (e)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES*1..2]-(o)\n  WHERE none(n IN tail(nodes(p)) WHERE elementId(n) IN $blocked)\n  WITH p, o,\n       CASE WHEN $use_communities AND o.community = e.community THEN 1 ELSE 0 END AS same_community,\n       CASE WHEN $use_pagerank THEN coalesce(o.pagerank, 0.0) ELSE 0.0 END AS centrality\n  ORDER BY same_community DESC, centrality DESC, length(p)\n  LIMIT $per_entity\n  RETURN p\n}\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels"
+  ],
+  "confidence": {
+   "score": 0.8498,
+   "components": {
+    "vector": 0.785,
+    "fulltext": 0.5,
+    "path": 1.0,
+    "citations": 1.0
+   }
+  }
+ },
+ {
+  "question": "Como a responsabilidade civil se aplica ao erro médico?",
+  "answer": "A responsabilidade civil aplicada ao erro médico é, em regra, subjetiva: depende da demonstração do nexo entre a conduta do médico e o resultado lesivo, comprovada pela existência de culpa (negligência, imprudência ou imperícia) [C8], [P17]. Não provadas a imprudência, imperícia ou negligência, nem o erro grosseiro, afasta-se a obrigação de indenizar [C6].\n\nA culpa se caracteriza quando o médico viola seus deveres: dever de informar e aconselhar, dever de assistir e dever de prudência [C2]. A medicina não é ciência exata, e complicações inerentes ao próprio procedimento não configuram erro médico [C7], [C6].\n\nHá distinção quanto à obrigação: nas áreas tradicionais da medicina, a obrigação é de meio, cabendo ao autor provar a culpa [C4], [C6]; na cirurgia plástica estética, a obrigação é de resultado, bastando a prova de que o resultado esperado não foi atingido, com inversão do ônus da prova [C4].\n\nAplica-se o Código de Defesa do Consumidor, que permite a inversão do ônus da prova em favor do consumidor (art. 6º, VIII) diante da hipossuficiência técnica do paciente [C4], [P1], [P2], [Q]. A responsabilidade só se exclui pelas excludentes gerais (culpa exclusiva ou concorrente da vítima, caso fortuito e força maior), não podendo o médico alegar cláusula de não indenizar (arts. 25 e 51, I, do CDC) [C4].\n\nQuanto às instituições de saúde, a responsabilidade é objetiva: o ente responde pelos atos de seus agentes, assegurado o direito de regresso contra o profissional [C5]. O erro médico decorre, em regra, de culpa, sendo o mau resultado involuntário do serviço prestado [C5], [P18].",
+  "chunks": [
+   {
+    "id": "fe6cd0910d31:0",
+    "text": "1 INTRODUÇÃO O estudo versa sobre o “Erro Médico e a dignidade da pessoa humana”. O assunto é relevante por suscitar a relevância da proteção constitucional do cidadão acometido pelo erro médico. O enfoque será pautado frente ao Direito Constitucional Brasileiro A preocupação geral que o levou a escolher esta temática, possibilitará o estudo perante aspectos modernos e atuais do erro médico e o princípio da dignidade da pessoa humana. O tema escolhido é possível desenvolver no tempo previsto, sem objetivar esgotá-lo. Atualmente a responsabilidade civil do médico tornou-se um tema que desperta interesse da sociedade, sobretudo da área jurídica e da Medicina estética. As inovações trazidas [...]",
+    "article_title": "Erro médico e a dignidade da pessoa humana",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/erro-medico-e-a-dignidade-da-pessoa-humana/",
+    "score": 0.8313544988632202
+   },
+   {
+    "id": "fe6cd0910d31:1",
+    "text": "atividade médica é de primordial interesse social. Por ser tão relevante, a atividade médica é regrada, impõe ao profissional normas de conduta médica e até mesmo de comportamento pessoal. Essas regras e sistema de fiscalização encontram-se estabelecidas no Código de Ética Médica (CEM), posto em vigor pela Resolução do Conselho Federal de Medicina (CFM) 1.246, de 08.01.1988. O Manual de Orientação Ética Disciplinar do Conselho Federal de Medicina define o erro médico: “A falha do médico no exercício da profissão. É o mau resultado ou resultado adverso decorrente da ação ou da omissão do médico, por inobservância de conduta técnica, estando o profissional no pleno exercício de suas [...]",
+    "article_title": "Erro médico e a dignidade da pessoa humana",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/erro-medico-e-a-dignidade-da-pessoa-humana/",
+    "score": 0.8240929841995239
+   },
+   {
+    "id": "517ed7e8ca91:0",
+    "text": "Introdução: O Direito Médico e da Saúde reúne profissionais do direito e profissionais da área da saúde, incluindo nesse quesito as instituições que prestam serviços específicos na área da saúde, e que muitas vezes confundem-se com uma terminologia que aos olhos do autor desse artigo são diferentes, porém na área da Justiça tudo termina numa coisa só. Assim, ERRO MÉDICO não é a mesma coisa que ERRO DO MÉDICO; IATROGENIA, não é o que normalmente os médicos dizem ser, camuflando erros grotescos com justificativas corporativistas e de dificil compreensão pelos militantes do direito, advogados, promotores, magistrados. Este artigo baseia-se em pesquisas em todos os meios idôneos de informações [...]",
+    "article_title": "Novos Entendimentos no Direito Médico",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/novos-entendimentos-no-direito-medico/",
+    "score": 0.815872073173523
+   },
+   {
+    "id": "3c9f8dcc721a:8",
+    "text": "ônus da prova, nos termos do artigo 6º, VIII, do CDC, quando restar comprovada a hipossuficiência técnica do paciente, cabendo ao médico provar que agiu com todo o zelo e cuidado e que o resultado obtido estava enquadrado dentro do resultado previsível e aceitável, uma vez ser ele o detentor da informação técnica. Coaduna com esse entendimento, Carlos Roberto Gonçalves, para quem: “A prova da negligência e da imperícia constitui, na prática, como já dito, verdadeiro tormento para as vítimas. Sendo o médico, no entanto, prestador de serviço, a sua responsabilidade, embora subjetiva, está sujeita à disciplina do Código de Defesa do Consumidor, que permite ao juiz inverter o ônus da prova em [...]",
+    "article_title": "A aplicação do Código de Defesa do Consumidor na responsabilidade civil do médico em cirurgias plásticas estéticas",
+    "link": "https://ambitojuridico.com.br/edicoes/revista-159/a-aplicacao-do-codigo-de-defesa-do-consumidor-na-responsabilidade-civil-do-medico-em-cirurgias-plasticas-esteticas/",
+    "score": 0.818985104560852
+   },
+   {
+    "id": "517ed7e8ca91:5",
+    "text": "resultado por imprudência, negligência ou imperícia. (…) “Art. 129 – Ofender a integridade corporal ou a saúde de outrem.(…)\" Do ponto de vista jurídico o erro do profissional da saúde é o mau resultado involuntário do seu serviço profissional prestado, sem a intenção de produzí-lo. Já na situação em que fique comprovado a intenção de fazer, ou fazer algo sabendo o que poderá acontecer com o paciente, e mesmo assim o faz e acontece o mau, qualifica-se como uma infração penal. Infrigem a Constituição Federal de 5 de outubro de 1988, em seu artigo 37 – XXI em seu parágrafo 6º\"(…)[2].As instituições de saúde sendo pessoas jurídicas de direito público, são diretamente responsáveis por todos os [...]",
+    "article_title": "Novos Entendimentos no Direito Médico",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/novos-entendimentos-no-direito-medico/",
+    "score": 0.8212110996246338
+   },
+   {
+    "id": "a433c9ed17c0:5",
+    "text": "o sistema de responsabilidade subjetiva pelo Código Civil, de forma que, não resultando provadas a imprudência, imperícia ou negligência, nem o erro grosseiro, FICA AFASTADA A OBRIGAÇÃO DE INDENIZAR. – Não havendo nexo causal entre a conduta do médico e a morte do prematuro, conseqüentemente não há que se falar em responsabilidade solidária do hospital. – Correta a sentença que entendeu dessa forma, a qual deve ser mantida”. (TJ-MG – AC: 10024095783965001 MG , Relator: Mariângela Meyer, Data de Julgamento: 18/03/2014, Câmaras Cíveis / 10ª CÂMARA CÍVEL, Data de Publicação: 02/04/2014) (grifamos). “APELAÇÃO CÍVEL. AÇÃO DE INDENIZAÇÃO. ERRO MÉDICO. RESPONSABILIDADE CIVIL. MÉDICO. OBRIGAÇÃO DE [...]",
+    "article_title": "A responsabilidade civil médica diante do dano iatrogênico. Razoabilidade na aferição do possível. Estudo de caso",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/a-responsabilidade-civil-medica-diante-do-dano-iatrogenico-razoabilidade-na-afericao-do-possivel-estudo-de-caso/",
+    "score": 0.8444489240646362
+   },
+   {
+    "id": "a433c9ed17c0:6",
+    "text": "ao pagamento de 50 salários mínimos (25 cada um) pelos danos morais suportados. 2. A medicina não é ciência exata, e somente diante de elementos que apontem o erro grosseiro, manifesta incautela, menoscabo ou ausência de zelo, é que se poderia imputar ao profissional responsabilidade por eventual resultado danoso. 3. CASO EM QUE AS COMPLICAÇÕES OCORRIDAS NA INTERVENÇÃO CIRÚRGICA DECORRERAM DA PRÓPRIA COMPLEXIDADE DO PROCEDIMENTO, e gravidade do quadro clínico do paciente, de modo que a responsabilidade civil pela lesão não pode ser imputada ao médico que promoveu a cirurgia. 4. Quanto à responsabilidade civil do hospital, cumpre mencionar que o autor busca responsabilizar o hospital em [...]",
+    "article_title": "A responsabilidade civil médica diante do dano iatrogênico. Razoabilidade na aferição do possível. Estudo de caso",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/a-responsabilidade-civil-medica-diante-do-dano-iatrogenico-razoabilidade-na-afericao-do-possivel-estudo-de-caso/",
+    "score": 0.848910927772522
+   },
+   {
+    "id": "3c9f8dcc721a:3",
+    "text": "causou independente de culpa, uma vez que sua responsabilidade é imposta por lei, considerando para a fixação da obrigação de indenizar a atividade exercida pelo agente, o perigo que esta atividade pode vir a causar a outrem. Então, se em decorrência desta atividade perigosa o agente causar dano a alguém, ele terá que indenizar, tendo em vista a atividade por ele desenvolvida. Na responsabilidade objetiva, como afirma Maria Helena Diniz (2003, p.53), “a atividade que gera o dano é lícita, mas causou perigo a outrem, de modo que aquele que exerce, por ter a obrigação de velar para que dela não resulte prejuízo, terá o dever ressarcitório, pelo simples implemento do nexo causal”. O nosso [...]",
+    "article_title": "A aplicação do Código de Defesa do Consumidor na responsabilidade civil do médico em cirurgias plásticas estéticas",
+    "link": "https://ambitojuridico.com.br/edicoes/revista-159/a-aplicacao-do-codigo-de-defesa-do-consumidor-na-responsabilidade-civil-do-medico-em-cirurgias-plasticas-esteticas/",
+    "score": 0.824288010597229
+   }
+  ],
+  "nodes": [
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:26740",
+    "label": "Concept",
+    "name": "responsabilidade civil do médico",
+    "pagerank": 6.165671186991216e-05,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "label": "Norm",
+    "name": "Código de Defesa do Consumidor",
+    "pagerank": 0.00034616332342567245,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15397",
+    "label": "Concept",
+    "name": "responsabilidade civil",
+    "pagerank": 0.008120373156236673,
+    "community": 1
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "label": "Concept",
+    "name": "erro médico",
+    "pagerank": 0.00025899654864614663,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23239",
+    "label": "Concept",
+    "name": "erro do médico",
+    "pagerank": 6.067645403041081e-05,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15399",
+    "label": "Concept",
+    "name": "ação civil pública",
+    "pagerank": 0.0007168388135151906,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23341",
+    "label": "Concept",
+    "name": "consumidor",
+    "pagerank": 0.0006481894985352254,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15669",
+    "label": "Concept",
+    "name": "vulnerabilidade do consumidor",
+    "pagerank": 0.0006129380163422234,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:22070",
+    "label": "Concept",
+    "name": "contrato de adesão",
+    "pagerank": 0.0005302401209097462,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15668",
+    "label": "Concept",
+    "name": "relação de consumo",
+    "pagerank": 0.0004397296820644057,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:22586",
+    "label": "Concept",
+    "name": "processo coletivo",
+    "pagerank": 0.0004240634930338876,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:26615",
+    "label": "Concept",
+    "name": "superendividamento",
+    "pagerank": 0.0004050102021663032,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15388",
+    "label": "Concept",
+    "name": "justiça social",
+    "pagerank": 0.00040325072883109266,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23242",
+    "label": "Concept",
+    "name": "imperícia",
+    "pagerank": 0.00011225413839069672,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23244",
+    "label": "Concept",
+    "name": "exercício regular do direito",
+    "pagerank": 0.00010839270226679324,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23245",
+    "label": "Concept",
+    "name": "falha médica",
+    "pagerank": 6.067645403041081e-05,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16893",
+    "label": "Norm",
+    "name": "Lei 3.268/1957",
+    "pagerank": 6.067645403041081e-05,
+    "community": 4
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:22947",
+    "label": "Concept",
+    "name": "responsabilidade civil subjetiva",
+    "pagerank": 0.00019372539829502674,
+    "community": 1
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19706",
+    "label": "Concept",
+    "name": "ato ilícito",
+    "pagerank": 0.003652207998946851,
+    "community": 1
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16675",
+    "label": "Norm",
+    "name": "Decreto 20.931/1932",
+    "pagerank": 0.00012237385884086464,
+    "community": 39
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15130",
+    "label": "Norm",
+    "name": "Código de Ética Médica",
+    "pagerank": 6.067645403041081e-05,
+    "community": 21
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16865",
+    "label": "Norm",
+    "name": "Resolução 1.246/1988",
+    "pagerank": 6.067645403041081e-05,
+    "community": 21
+   }
+  ],
+  "edges": [
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:26740",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15397",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15397",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23239",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15399",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23341",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15669",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:22070",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15668",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:22586",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:26615",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15388",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23242",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23242",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23244",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23245",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16893",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23242",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:22947",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:22947",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15397",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15397",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:19706",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16675",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15130",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16865",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23104",
+    "type": "REGULATES"
+   }
+  ],
+  "paths": [
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "responsabilidade civil",
+    "<-[SPECIALIZES]-",
+    "erro médico"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "responsabilidade civil",
+    "<-[SPECIALIZES]-",
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "erro do médico"
+   ],
+   [
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "erro do médico"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "ação civil pública"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "consumidor"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "vulnerabilidade do consumidor"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "contrato de adesão"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "relação de consumo"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "processo coletivo"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "superendividamento"
+   ],
+   [
+    "responsabilidade civil do médico",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor",
+    "-[REGULATES]->",
+    "justiça social"
+   ],
+   [
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "imperícia"
+   ],
+   [
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "imperícia",
+    "-[SPECIALIZES]->",
+    "exercício regular do direito"
+   ],
+   [
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "falha médica"
+   ],
+   [
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "imperícia",
+    "<-[REGULATES]-",
+    "Lei 3.268/1957"
+   ],
+   [
+    "erro médico",
+    "-[SPECIALIZES]->",
+    "responsabilidade civil"
+   ],
+   [
+    "erro médico",
+    "-[SPECIALIZES]->",
+    "responsabilidade civil subjetiva",
+    "-[SPECIALIZES]->",
+    "responsabilidade civil"
+   ],
+   [
+    "erro médico",
+    "-[SPECIALIZES]->",
+    "responsabilidade civil",
+    "-[SPECIALIZES]->",
+    "ato ilícito"
+   ],
+   [
+    "erro do médico",
+    "-[SPECIALIZES]->",
+    "erro médico"
+   ],
+   [
+    "erro do médico",
+    "-[SPECIALIZES]->",
+    "erro médico",
+    "<-[SPECIALIZES]-",
+    "imperícia"
+   ]
+  ],
+  "cypher": [
+   "MATCH (a:Article)-[:ABOUT]->(c:Concept)\nWHERE toLower(c.name) CONTAINS 'responsabilidade civil'\n   OR toLower(c.name) CONTAINS 'erro médico'\n   OR toLower(c.name) CONTAINS 'responsabilidade médica'\n   OR toLower(c.name) CONTAINS 'responsabilidade hospitalar'\nWITH a, collect(DISTINCT c.name) AS conceitos\nOPTIONAL MATCH (a)-[:CITES_NORM]->(n:Norm)\nOPTIONAL MATCH (n)-[:REGULATES]->(rc:Concept)\nWHERE toLower(rc.name) CONTAINS 'responsabilidade'\n   OR toLower(rc.name) CONTAINS 'erro médico'\n   OR toLower(rc.name) CONTAINS 'consentimento'\n   OR toLower(rc.name) CONTAINS 'dano'\n   OR toLower(rc.name) CONTAINS 'saúde'\nRETURN DISTINCT a.title AS artigo,\n       conceitos AS conceitos_do_artigo,\n       collect(DISTINCT n.name) AS normas_citadas,\n       collect(DISTINCT rc.name) AS conceitos_regulados\nLIMIT 25",
+   "MATCH (a) WHERE elementId(a) = $source\nMATCH (b) WHERE elementId(b) = $target\nMATCH p = shortestPath((a)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES|MENTIONS*..4]-(b))\nWHERE none(n IN nodes(p) WHERE elementId(n) IN $blocked)\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels",
+   "UNWIND $ids AS sid\nCALL (sid) {\n  MATCH (e) WHERE elementId(e) = sid\n  MATCH p = (e)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES*1..2]-(o)\n  WHERE none(n IN tail(nodes(p)) WHERE elementId(n) IN $blocked)\n  WITH p, o,\n       CASE WHEN $use_communities AND o.community = e.community THEN 1 ELSE 0 END AS same_community,\n       CASE WHEN $use_pagerank THEN coalesce(o.pagerank, 0.0) ELSE 0.0 END AS centrality\n  ORDER BY same_community DESC, centrality DESC, length(p)\n  LIMIT $per_entity\n  RETURN p\n}\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels"
+  ],
+  "confidence": {
+   "score": 0.9446,
+   "components": {
+    "vector": 0.8416,
+    "fulltext": 1.0,
+    "path": 1.0,
+    "citations": 1.0
+   }
+  }
+ },
+ {
+  "question": "Qual a alíquota de exportação de soja prevista na LGPD?",
+  "answer": "Não há informação suficiente no corpus para responder.\n\nFalta, especificamente, qualquer dado sobre alíquota aplicável à soja: o corpus não traz percentual, tabela ou ato normativo que fixe alíquota de exportação para esse produto.\n\nVale registrar que a própria premissa da pergunta não encontra respaldo no material. A Lei 13.709/2018 (LGPD) disciplina o tratamento de dados da pessoa natural, a proteção de dados pessoais, o consentimento e a autodeterminação informativa [C1], [C6], [Q], [P3], [P8] — não a tributação de mercadorias. Já o imposto de exportação aparece em contexto tributário distinto: tem como fato gerador \"a saída do território nacional, para o estrangeiro, de produto nacional ou nacionalizado\", com alíquotas que podem ser específicas ou ad valorem, conforme o art. 23 do CTN e o art. 1º do Decreto-lei nº 1.578/77 [C2], [C5], [P1], [P16]. O corpus ainda indica que esse imposto é dotado de função extrafiscal e não se sujeita à anterioridade [C2], [P10], [P14], mas em nenhum trecho há quantificação de alíquota para a soja ou para qualquer produto agrícola específico.",
+  "chunks": [
+   {
+    "id": "38cad1b3e69d:0",
+    "text": "Introdução A lei 13.709/2018, Lei Geral de Proteção de Dados (LGPD), dispõe sobre o tratamento de dados da pessoa natural realizado em todas as searas da sociedade. Uma das áreas em que mais encontra eco é nas relações de trabalho. Isso se dá porque para a execução dos contratos de trabalho é imprescindível que os dados do empregado sejam manejados constantemente. Nesse sentido, é fundamental avaliar os impactos da LGPD no âmbito justrabalhista, uma vez que nesse “terreno” a legislação de proteção de dados encontra ampla aplicabilidade. Dentre as questões passíveis de serem enfrentadas pelo direito do trabalho quanto aos termos da LGDP estão o consentimento do trabalhador e o peso que tal [...]",
+    "article_title": "Os impactos da Lei Geral de Proteção de Dados no Direito Coletivo do Trabalho",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-do-trabalho/lei-geral-de-protecao-de-dados-direito-do-trabalho/",
+    "score": 0.7323468923568726
+   },
+   {
+    "id": "a5e25332b974:7",
+    "text": "porto ou lugar de entrada do produto no País; III – quando se trate de produto apreendido ou abandonado, levado a leilão, o preço da arrematação. Art. 22. Contribuinte do imposto é: I – o importador ou quem a lei a ele equiparar; II – o arrematante de produtos apreendidos ou abandonados”. Por outro lado, o imposto de exportação, conforme artigo 23 do CTN e artigo 1º do Decreto-lei nº 1.578/77, tem como fato gerador “a saída do território nacional, para o estrangeiro, de produto nacional ou nacionalizado” e as alíquotas podem ser especificas ou ad valorem, nos mesmos moldes explicitados acima. O contribuinte, nesse caso, é o exportador ou quem a ele a lei equiparar e sua base de cálculo está [...]",
+    "article_title": "O fenômeno extrafiscal no sistema tributário brasileiro",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-tributario/o-fenomeno-extrafiscal-no-sistema-tributario-brasileiro/",
+    "score": 0.712496280670166
+   },
+   {
+    "id": "1842069a9b0e:3",
+    "text": "tutela mais rígida e especifica da proteção de dados na legislação nacional. Tendo em vista o período de vacatio legis de 24 meses da LGPD, aqueles que se encontram dentro do rol de incidência da LGPD terão até agosto de 2020 para se adequarem às novas normas trazidas pela inédita legislação. Se observado pelo viés objetivo do grau de complexidade necessário para total adequação a Lei n. 13.709/18, resta claro que quem realiza o tratamento de dados pessoais ou sensíveis enfrentará inúmeras adversidades, haja vista a falta da cultura, propriamente dita, da proteção de dados pessoais, quando comparado a outros ordenamentos jurídicos mais prósperos e efetivos que o que vigora atualmente no [...]",
+    "article_title": "A proteção de dados extensível a pessoa jurídica de direito privado",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/a-protecao-de-dados-extensivel-a-pessoa-juridica-de-direito-privado/",
+    "score": 0.7219651937484741
+   },
+   {
+    "id": "5c2db6e8aa19:9",
+    "text": "a hipótese se conjuga e identifica os sujeitos ativos e passivos da relação jurídico-tributária, fixando os direitos e obrigações dos mesmos, a partir do respectivo fato jurídico.[37] “ao preceituar a conduta, fazendo irromper direitos subjetivos e deveres jurídicos correlatos, o conseqüente normativo desenha a previsão de uma relação jurídica, que se instala, automática e infalivelmente, assim que se concretize o fato”[38]. São dois os critérios ou aspectos que possibilitam a identificação da relação jurídica, o critério pessoal e o critério quantitativo. O critério pessoal aponta quem são os sujeitos que compõem a relação jurídico-tributária, ou seja, sujeito ativo, credor ou pretensor, e [...]",
+    "article_title": "IPTU em face da cidade",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-tributario/iptu-em-face-da-cidade/",
+    "score": 0.6423402428627014
+   },
+   {
+    "id": "a5e25332b974:6",
+    "text": "de câmbio. Com a alta no preço, a procura por moeda estrangeira, teoricamente, é reduzida, o que tende a estabilizar o mercado cambial. Obviamente apenas essa medida, se adotada pelo governo, não acabaria com o problema citado. Além disso, o imposto sobre operações financeiras, dentre outras maneiras, pode ser usado para fomentar as operações realizadas no mercado de títulos e valores mobiliários. De igual forma, a alíquota que incide sobre as operações relativas a seguros pode ser diminuída para que mais pessoas, físicas ou jurídicas, contratem este tipo de serviço. Dentre os impostos que têm conseqüência direta na economia do país, temos, ainda, os impostos sobre importação e exportação [...]",
+    "article_title": "O fenômeno extrafiscal no sistema tributário brasileiro",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-tributario/o-fenomeno-extrafiscal-no-sistema-tributario-brasileiro/",
+    "score": 0.6976303458213806
+   },
+   {
+    "id": "38cad1b3e69d:5",
+    "text": "de Proteção de Dados (RGPD) da União Europeia possui um artigo para tratar do processamento dos dados na relação de emprego. Nesse dispositivo, há a determinação para que os Estados-Membros regulem o tratamento de dados na seara trabalhista por meio de leis ou de convenções coletivas. O art. 88 da RGPD estabelece que as convenções coletivas devem servir como ferramenta para “garantir a proteção dos direitos e liberdades no que diz respeito ao tratamento de dados pessoais dos trabalhadores no contexto do trabalho” (UE, 2016). A lei brasileira teve influência direta da RGPD, contudo não houve naquela a mesma preocupação em especificar a tutela do tratamento de dados na conjuntura trabalhista. [...]",
+    "article_title": "Os impactos da Lei Geral de Proteção de Dados no Direito Coletivo do Trabalho",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-do-trabalho/lei-geral-de-protecao-de-dados-direito-do-trabalho/",
+    "score": 0.725310206413269
+   },
+   {
+    "id": "1842069a9b0e:0",
+    "text": "INTRODUÇÃO Na era da difusão rápida e constante de informação (concomitante com a contenda para proteção da privacidade), os dados pessoais se revelam como insumos de alto valor, e constituem uma economia própria, tendo como base o tratamento inerente e necessário ao exercício da atividade de milhares de empresas. Por outro lado, há também as transações secundárias de dados, nas quais empresas ou pessoas jurídicas transmitem ou vendem dados (muitas vezes sensíveis ou que tornam possível a identificação de características pessoais de determinado indivíduo) obtidos de forma legal (ou ilegal) para terceiros agentes. A cadeia incerta e dificultosa de ser medir começa com essa transferência, [...]",
+    "article_title": "A proteção de dados extensível a pessoa jurídica de direito privado",
+    "link": "https://ambitojuridico.com.br/cadernos/direito-civil/a-protecao-de-dados-extensivel-a-pessoa-juridica-de-direito-privado/",
+    "score": 0.7185680866241455
+   },
+   {
+    "id": "4088f51f172f:6",
+    "text": "firmados acordos entre os países envolvidos e as queixas retiradas. Em conjunto com a Tailândia e a Austrália, o Brasil entrou com denúncia, em 2002, na OMC contra os subsídios da União Européia aos produtores de açúcar. A ação argumentava que os europeus estavam em desacordo com as normas da Organização em dois pontos: nas exportações do açúcar produzido na própria Europa e na não-inclusão dos subsídios nas exportações do produto das ex-colônias. Ainda no mesmo ano, a OMC deu ganho ao Brasil. Os exportadores brasileiros questionam a decisão da União Européia de aumentar de 15% para 75% a taxa cobrada sobre as importações do frango salgado brasileiro. Segundo a ação, o aumento viola os [...]",
+    "article_title": "A Organização Mundial do Comércio e a atuação do Brasil no comércio internacional",
+    "link": "https://ambitojuridico.com.br/edicoes/revista-52/a-organizacao-mundial-do-comercio-e-a-atuacao-do-brasil-no-comercio-internacional/",
+    "score": 0.7116416096687317
+   }
+  ],
+  "nodes": [
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:25684",
+    "label": "Concept",
+    "name": "imposto de exportação",
+    "pagerank": 0.00016896120603510288,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "label": "Norm",
+    "name": "Código Tributário Nacional",
+    "pagerank": 0.00028089658579535237,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:11668",
+    "label": "Chunk",
+    "name": "5c2db6e8aa19:9",
+    "pagerank": null,
+    "community": null
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:25435",
+    "label": "Concept",
+    "name": "alíquota",
+    "pagerank": null,
+    "community": null
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "label": "Norm",
+    "name": "Lei 13.709/2018",
+    "pagerank": 0.0001147657217233011,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "label": "Concept",
+    "name": "proteção de dados pessoais",
+    "pagerank": 0.0003235482527356306,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "label": "Norm",
+    "name": "Código de Defesa do Consumidor",
+    "pagerank": 0.00034616332342567245,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "label": "Concept",
+    "name": "privacidade",
+    "pagerank": 0.0008161419191051573,
+    "community": 0
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "label": "Concept",
+    "name": "consentimento",
+    "pagerank": 0.0001498712139967304,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "label": "Concept",
+    "name": "validade dos tratados",
+    "pagerank": 0.0002980354186971801,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "label": "Concept",
+    "name": "princípio da não-discriminação",
+    "pagerank": 0.00013964308830823988,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "label": "Concept",
+    "name": "proteção de dados",
+    "pagerank": 0.00013054560091256017,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:23285",
+    "label": "Concept",
+    "name": "autodeterminação informativa",
+    "pagerank": 0.00012408237181658744,
+    "community": 7
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:24448",
+    "label": "Concept",
+    "name": "extrafiscalidade",
+    "pagerank": 0.001100379302295646,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15381",
+    "label": "Concept",
+    "name": "poder de polícia",
+    "pagerank": 0.000766250150988526,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15628",
+    "label": "Concept",
+    "name": "obrigação tributária",
+    "pagerank": 0.0006743071686008724,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15620",
+    "label": "Concept",
+    "name": "responsabilidade tributária",
+    "pagerank": 0.0006159835075179024,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:24447",
+    "label": "Concept",
+    "name": "fiscalidade",
+    "pagerank": 0.0005299180154626572,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:25352",
+    "label": "Concept",
+    "name": "isenção tributária",
+    "pagerank": 0.0003892592057681228,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15623",
+    "label": "Concept",
+    "name": "fato gerador",
+    "pagerank": 0.0003681133855871878,
+    "community": 9
+   },
+   {
+    "id": "4:432654f6-a582-4b76-a8a8-6151980b077f:15611",
+    "label": "Concept",
+    "name": "dívida ativa",
+    "pagerank": 0.0003310264410187262,
+    "community": 9
+   }
+  ],
+  "edges": [
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:25684",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:11668",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "type": "MENTIONS"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:11668",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:25435",
+    "type": "MENTIONS"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15223",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20286",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15475",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:20767",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:26235",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:19707",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:16331",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23285",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:23285",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:23286",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:25684",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:24448",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15381",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15628",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15620",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:24448",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:24447",
+    "type": "SPECIALIZES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:25352",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15623",
+    "type": "REGULATES"
+   },
+   {
+    "source": "4:432654f6-a582-4b76-a8a8-6151980b077f:15145",
+    "target": "4:432654f6-a582-4b76-a8a8-6151980b077f:15611",
+    "type": "REGULATES"
+   }
+  ],
+  "paths": [
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "<-[MENTIONS]-",
+    "trecho 5c2db6e8aa19:9",
+    "-[MENTIONS]->",
+    "alíquota"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados pessoais",
+    "<-[REGULATES]-",
+    "Código de Defesa do Consumidor"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados pessoais"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "privacidade",
+    "<-[SPECIALIZES]-",
+    "proteção de dados pessoais"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "consentimento",
+    "-[SPECIALIZES]->",
+    "validade dos tratados"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "consentimento"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "princípio da não-discriminação"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "proteção de dados"
+   ],
+   [
+    "Lei 13.709/2018",
+    "-[REGULATES]->",
+    "autodeterminação informativa",
+    "-[SPECIALIZES]->",
+    "proteção de dados"
+   ],
+   [
+    "imposto de exportação",
+    "-[SPECIALIZES]->",
+    "extrafiscalidade"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "poder de polícia"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "obrigação tributária"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "responsabilidade tributária"
+   ],
+   [
+    "imposto de exportação",
+    "-[SPECIALIZES]->",
+    "extrafiscalidade",
+    "-[SPECIALIZES]->",
+    "fiscalidade"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "isenção tributária"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "fato gerador"
+   ],
+   [
+    "imposto de exportação",
+    "<-[REGULATES]-",
+    "Código Tributário Nacional",
+    "-[REGULATES]->",
+    "dívida ativa"
+   ]
+  ],
+  "cypher": [
+   "MATCH (n:Norm {id: 'lei:13709:2018'})-[r:REGULATES]->(c:Concept)\nRETURN DISTINCT c.name AS conceito_regulado_pela_lgpd, r.evidence AS evidencia LIMIT 25",
+   "MATCH (a) WHERE elementId(a) = $source\nMATCH (b) WHERE elementId(b) = $target\nMATCH p = shortestPath((a)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES|MENTIONS*..4]-(b))\nWHERE none(n IN nodes(p) WHERE elementId(n) IN $blocked)\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels",
+   "UNWIND $ids AS sid\nCALL (sid) {\n  MATCH (e) WHERE elementId(e) = sid\n  MATCH p = (e)-[:REGULATES|AMENDS|REVOKES|ISSUED_BY|INTERPRETS|SPECIALIZES*1..2]-(o)\n  WHERE none(n IN tail(nodes(p)) WHERE elementId(n) IN $blocked)\n  WITH p, o,\n       CASE WHEN $use_communities AND o.community = e.community THEN 1 ELSE 0 END AS same_community,\n       CASE WHEN $use_pagerank THEN coalesce(o.pagerank, 0.0) ELSE 0.0 END AS centrality\n  ORDER BY same_community DESC, centrality DESC, length(p)\n  LIMIT $per_entity\n  RETURN p\n}\nRETURN [n IN nodes(p) | {id: elementId(n), key: coalesce(n.id, n.name), label: labels(n)[0], name: coalesce(n.name, n.title, n.id), pagerank: n.pagerank, community: n.community}] AS nodes, [r IN relationships(p) | {source: elementId(startNode(r)), target: elementId(endNode(r)), type: type(r)}] AS rels"
+  ],
+  "confidence": {
+   "score": 0.648,
+   "components": {
+    "vector": 0.7265,
+    "fulltext": 0.625,
+    "path": 0.3333,
+    "citations": 1.0
+   }
+  }
+ }
+]
