@@ -33,6 +33,7 @@ def test_other_questions_get_the_fixed_example():
 def demo_file(monkeypatch, tmp_path):
     path = tmp_path / "demo.json"
     monkeypatch.setattr(mock, "DEMO_FILE", path)
+    monkeypatch.setattr(mock, "EVALUATION_FILE", tmp_path / "sem_avaliacao.json")
     mock.recorded.cache_clear()
     yield path
     mock.recorded.cache_clear()

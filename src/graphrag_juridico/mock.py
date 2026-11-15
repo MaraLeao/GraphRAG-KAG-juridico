@@ -18,6 +18,7 @@ from .contracts import AskResult, ChunkRef, Confidence, GraphEdge, GraphNode
 
 LGPD = "lei:13709:2018"
 DEMO_FILE = Path(__file__).parent / "resources" / "demo_answers.json"
+EVALUATION_FILE = Path(__file__).parent / "resources" / "evaluation_results.json"   # gravado pela avaliação
 DEMO_QUESTIONS = [
     "Qual a relação entre a LGPD e a dignidade da pessoa humana?",
     "Quais instituições interpretam normas que regulam o consentimento?",
@@ -33,10 +34,36 @@ def _key(question: str) -> str:
 
 @lru_cache(maxsize=1)
 def recorded() -> dict[str, AskResult]:
-    """Execuções reais gravadas, indexadas pela pergunta normalizada."""
+    """Execuções reais gravadas, indexadas pela pergunta normalizada: as dos exemplos e as respostas do
+    GraphRAG gravadas na avaliação (estas têm prioridade, por serem as mais recentes)."""
+    out = demo_file_answers()
+    for runs in recorded_comparisons().values():
+        if "graphrag" in runs:
+            result = AskResult.model_validate(runs["graphrag"]["result"])
+            out[_key(result.question)] = result
+    return out
+
+
+def demo_file_answers() -> dict[str, AskResult]:
+    """Só as respostas do arquivo do modo demonstração (sem as da avaliação)."""
     if not DEMO_FILE.exists():
         return {}
     return {_key(r["question"]): AskResult.model_validate(r) for r in json.loads(DEMO_FILE.read_text("utf-8"))}
+
+
+def recorded_comparisons() -> dict[str, dict[str, dict]]:
+    """Comparações gravadas pela avaliação, indexadas pela pergunta normalizada: {método: {result, latency}}."""
+    if not EVALUATION_FILE.exists():
+        return {}
+    out = {}
+    for runs in json.loads(EVALUATION_FILE.read_text("utf-8")).values():
+        question = next(iter(runs.values()))["result"]["question"]
+        out[_key(question)] = runs
+    return out
+
+
+def recorded_comparison(question: str) -> dict[str, dict] | None:
+    return recorded_comparisons().get(_key(question))
 
 
 def is_recorded(question: str) -> bool:
@@ -96,7 +123,7 @@ def record(questions: list[str] = DEMO_QUESTIONS) -> list[str]:
     """Roda o pipeline real para cada pergunta e grava o resultado; devolve as que falharam."""
     from .ask import ask  # import tardio: ask importa este módulo
 
-    saved = {_key(r.question): r for r in recorded().values()}
+    saved = demo_file_answers()   # parte só do próprio arquivo: as respostas da avaliação ficam no dela
     failed = []
     for question in questions:
         try:
