@@ -12,6 +12,9 @@ requires-python = ">=3.11"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+graphrag_juridico = ["resources/*.json"]   # execuções gravadas do modo demonstração
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
