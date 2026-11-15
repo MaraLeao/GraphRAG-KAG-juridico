@@ -18,13 +18,14 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `schema.cypher` | Constraints de unicidade, índice BTree e índices fulltext |
 | `schema_vector.cypher` | Índices vetoriais (rodar só depois de escolher o modelo de embedding; ajuste `vector.dimensions`) |
 | `.env.example` | Variáveis de ambiente esperadas (copie para `.env`, que **não** vai para o Git) |
-| `requirements.txt` | Dependências Python |
-| `pyproject.toml` | Empacotamento do código em `src/` e configuração do `pytest` |
+| `pyproject.toml` | Dependências Python, empacotamento do código em `src/` e configuração do `pytest` |
+| `uv.lock` | Versões exatas das dependências (gerado pelo uv; **versionado**, não edite à mão) |
+| `.python-version` | Versão do Python usada pelo uv (3.12) |
 | `src/graphrag_juridico/` | Sistema de perguntas (ver abaixo) |
 | `app/streamlit_app.py` | Interface web (Streamlit): ponto de entrada fino sobre o pacote |
 | `.streamlit/config.toml` | Tema escuro da interface (mesmas cores do grafo) |
-| `tests/` | Testes automatizados (`python -m pytest`), inclusive da interface em modo demonstração |
-| `.github/workflows/ci.yml` | CI (GitHub Actions): varredura de segredos (gitleaks), lint com ruff e testes em todo PR e push na `main`, sem Neo4j nem LLM |
+| `tests/` | Testes automatizados (`uv run pytest`), inclusive da interface em modo demonstração |
+| `.github/workflows/ci.yml` | CI (GitHub Actions): varredura de segredos (gitleaks), lint com ruff e testes em todo PR e push na `main`, sem Neo4j nem LLM, com as dependências do `uv.lock` |
 
 ### Pacote `graphrag_juridico`
 
@@ -45,8 +46,8 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 #### Algoritmos de grafo
 
 ```bash
-python -m graphrag_juridico.algorithms           # calcula e mostra as entidades mais centrais e as comunidades
-python -m graphrag_juridico.algorithms --write   # calcula e grava pagerank/community no banco do .env
+uv run python -m graphrag_juridico.algorithms           # calcula e mostra as entidades mais centrais e as comunidades
+uv run python -m graphrag_juridico.algorithms --write   # calcula e grava pagerank/community no banco do .env
 ```
 
 Rodam em Python (networkx) para funcionar também no Neo4j Aura Free, que não tem o plugin GDS.
@@ -55,8 +56,8 @@ O `--write` altera o banco: no Aura (compartilhado), combine com o grupo antes.
 #### Recuperação multi-hop
 
 ```bash
-python -m graphrag_juridico.multihop "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
-python -m graphrag_juridico.multihop "pergunta" --no-communities --no-pagerank   # compara sem os algoritmos
+uv run python -m graphrag_juridico.multihop "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+uv run python -m graphrag_juridico.multihop "pergunta" --no-communities --no-pagerank   # compara sem os algoritmos
 ```
 
 Mostra as entidades ligadas, os caminhos no grafo, os trechos escolhidos (`[C1]...`) e a confiança. Não usa o LLM.
@@ -66,7 +67,7 @@ servem de ponte nos caminhos. Requer `pagerank`/`community` gravados para priori
 #### Text-to-Cypher
 
 ```bash
-python -m graphrag_juridico.text_to_cypher "Quais instituições interpretam normas que regulam o consentimento?"
+uv run python -m graphrag_juridico.text_to_cypher "Quais instituições interpretam normas que regulam o consentimento?"
 ```
 
 Usa o `CYPHER_MODEL` do `.env` (uma requisição ao LLM por tentativa). Consultas com escrita, labels ou relações fora
@@ -75,8 +76,8 @@ do schema e caminhos sem limite são recusadas antes de chegar ao banco; a execu
 #### Perguntas (pipeline completo)
 
 ```bash
-python -m graphrag_juridico.ask "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
-python -m graphrag_juridico.ask "pergunta" --no-cypher    # sem a Cypher do LLM (uma requisição a menos)
+uv run python -m graphrag_juridico.ask "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+uv run python -m graphrag_juridico.ask "pergunta" --no-cypher    # sem a Cypher do LLM (uma requisição a menos)
 ```
 
 ```python
@@ -95,7 +96,7 @@ Cada pergunta usa 2 a 3 requisições ao LLM.
 #### Interface (Streamlit)
 
 ```bash
-streamlit run app/streamlit_app.py      # rode da raiz do repositório; abre em http://localhost:8501
+uv run streamlit run app/streamlit_app.py      # rode da raiz do repositório; abre em http://localhost:8501
 ```
 
 - **Perguntar:** resposta com as citações destacadas (trechos `[C]`, caminhos `[P]`, consulta `[Q]`), aviso de
@@ -175,27 +176,41 @@ Para a descrição completa de labels, relações, constraints e índices, veja 
 - Docker (ou uma instalação do Neo4j **5.11 ou superior**, necessário para índices vetoriais)
 - Opcional: plugin **Graph Data Science** (PageRank, Louvain)
 
-### 1. Ambiente Python
+### 1. Ambiente Python (uv)
+
+O projeto usa o [uv](https://docs.astral.sh/uv/) ([instalação](https://docs.astral.sh/uv/getting-started/installation/)).
+As dependências estão no `pyproject.toml` e as versões exatas no `uv.lock`.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-pip install -e .         # instala o pacote src/graphrag_juridico em modo editável
+uv sync                  # cria o .venv, instala as dependências (+ pytest) e o pacote src/graphrag_juridico
 cp .env.example .env     # edite com suas credenciais (nunca faça commit do .env)
-python -m pytest         # roda os testes
+uv run pytest            # roda os testes
 ```
 
-> No WSL, se `python -m venv` falhar por falta do `ensurepip`, use o [uv](https://docs.astral.sh/uv/):
-> `uv venv --python 3.12 .venv` e troque `pip install` por `uv pip install`. Para um PyTorch menor (só CPU),
-> rode antes `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
+Para rodar qualquer comando do projeto, use `uv run` (não precisa ativar o `.venv`):
+
+```bash
+uv run streamlit run app/streamlit_app.py
+uv run python -m graphrag_juridico.ask "pergunta"
+uv run python scripts/embed.py
+```
+
+**Embeddings locais (opcional, pesado).** O `sentence-transformers` puxa o PyTorch (vários GB no Linux) e só é
+necessário para `scripts/embed.py` e para a busca vetorial local. Para instalá-lo: `uv sync --extra embeddings`.
+O notebook de análise usa `uv sync --extra notebook` (matplotlib).
+
+**Adicionar ou atualizar dependências:** `uv add <pacote>` (ou `uv add --dev <pacote>`), e faça commit do
+`pyproject.toml` **e** do `uv.lock`. Para conferir se o lock está em dia: `uv sync --locked`.
+
+> No WSL, o uv baixa o Python sozinho, então não depende do `ensurepip`. Se quiser um PyTorch só de CPU,
+> rode depois do sync: `uv pip install torch --index-url https://download.pytorch.org/whl/cpu`.
 
 A CI roda o mesmo que você pode rodar localmente antes de abrir um PR: os testes não precisam do `.env`,
 do Neo4j nem do LLM, e o lint usa o [ruff](https://docs.astral.sh/ruff/) (a pasta `scripts/` fica de fora):
 
 ```bash
-python -m pytest
-uvx ruff@0.14.0 check src/ tests/ app/   # ou: pip install ruff==0.14.0 && ruff check src/ tests/ app/
+uv run pytest
+uv run ruff check src/ tests/ app/
 ```
 
 ### 2. Neo4j com Docker
@@ -223,9 +238,9 @@ Os índices vetoriais ficam em `schema_vector.cypher`; aplique-os do mesmo modo,
 ### 3.1 Embeddings e busca GraphRAG
 
 ```bash
-python scripts/embed.py                                  # embeddings de Chunk e Concept (baai/bge-m3, 1024 dim)
-python scripts/apply_schema.py schema_vector.cypher      # índices vetoriais
-python scripts/graphrag.py "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+uv run python scripts/embed.py                                  # embeddings de Chunk e Concept (baai/bge-m3, 1024 dim)
+uv run python scripts/apply_schema.py schema_vector.cypher      # índices vetoriais
+uv run python scripts/graphrag.py "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
 ```
 
 `graphrag.py` funde busca vetorial e fulltext (RRF), expande no grafo (entidades citadas e relações
