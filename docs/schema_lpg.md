@@ -2,7 +2,34 @@
 
 Este documento descreve o modelo **Labeled Property Graph (LPG)** implementado no Neo4j para o sistema GraphRAG/KAG sobre artigos jurídicos. Ele cobre os nós, relações, constraints e índices definidos em `schema.cypher` e `schema_vector.cypher`.
 
----
+```mermaid
+flowchart LR
+    Category((Category))
+    Article((Article))
+    Chunk((Chunk))
+    Norm((Norm))
+    Institution((Institution))
+    Concept((Concept))
+    Scholar((Scholar))
+
+    Article -->|IN_CATEGORY| Category
+    Article -->|HAS_CHUNK| Chunk
+    Article -->|CITES_NORM| Norm
+    Article -->|CITES_SCHOLAR| Scholar
+    Article -->|ABOUT| Concept
+
+    Chunk -->|MENTIONS| Norm
+    Chunk -->|MENTIONS| Institution
+    Chunk -->|MENTIONS| Concept
+    Chunk -->|MENTIONS| Scholar
+
+    Norm -->|REGULATES| Concept
+    Norm -->|AMENDS| Norm
+    Norm -->|REVOKES| Norm
+    Norm -->|ISSUED_BY| Institution
+    Institution -->|INTERPRETS| Norm
+    Concept -->|SPECIALIZES| Concept
+``` 
 
 ## 1. Visão Geral
 

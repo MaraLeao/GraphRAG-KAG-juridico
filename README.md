@@ -3,36 +3,6 @@
 Projeto final de *Tendências em Ciência da Computação* (Bacharelado em Ciência da Computação): um sistema de
 recuperação aumentada por grafo de conhecimento (GraphRAG/KAG) que combina um banco de grafos (Neo4j) com LLMs.
 
-
-```mermaid
-flowchart LR
-    Category((Category))
-    Article((Article))
-    Chunk((Chunk))
-    Norm((Norm))
-    Institution((Institution))
-    Concept((Concept))
-    Scholar((Scholar))
-
-    Article -->|IN_CATEGORY| Category
-    Article -->|HAS_CHUNK| Chunk
-    Article -->|CITES_NORM| Norm
-    Article -->|CITES_SCHOLAR| Scholar
-    Article -->|ABOUT| Concept
-
-    Chunk -->|MENTIONS| Norm
-    Chunk -->|MENTIONS| Institution
-    Chunk -->|MENTIONS| Concept
-    Chunk -->|MENTIONS| Scholar
-
-    Norm -->|REGULATES| Concept
-    Norm -->|AMENDS| Norm
-    Norm -->|REVOKES| Norm
-    Norm -->|ISSUED_BY| Institution
-    Institution -->|INTERPRETS| Norm
-    Concept -->|SPECIALIZES| Concept
-```
-
 ## Dataset
 
 [`celsowm/ambito_juridico_artigos`](https://huggingface.co/datasets/celsowm/ambito_juridico_artigos) (Hugging Face):
@@ -68,6 +38,35 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 Nomes do schema em inglês; valores e conteúdo em português.
 
 **Nós:** `Article`, `Chunk`, `Category`, `Norm`, `Institution`, `Concept`, `Scholar`.
+
+```mermaid
+flowchart LR
+    Category((Category))
+    Article((Article))
+    Chunk((Chunk))
+    Norm((Norm))
+    Institution((Institution))
+    Concept((Concept))
+    Scholar((Scholar))
+
+    Article -->|IN_CATEGORY| Category
+    Article -->|HAS_CHUNK| Chunk
+    Article -->|CITES_NORM| Norm
+    Article -->|CITES_SCHOLAR| Scholar
+    Article -->|ABOUT| Concept
+
+    Chunk -->|MENTIONS| Norm
+    Chunk -->|MENTIONS| Institution
+    Chunk -->|MENTIONS| Concept
+    Chunk -->|MENTIONS| Scholar
+
+    Norm -->|REGULATES| Concept
+    Norm -->|AMENDS| Norm
+    Norm -->|REVOKES| Norm
+    Norm -->|ISSUED_BY| Institution
+    Institution -->|INTERPRETS| Norm
+    Concept -->|SPECIALIZES| Concept
+```
 
 **Relações:**
 
