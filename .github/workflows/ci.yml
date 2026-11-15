@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# Um novo push no mesmo PR cancela a execução anterior.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Segredos: falha se algum commit do PR (ou do push) trouxer senha, chave ou token,
+  # como o .env ou as credenciais do Aura. Licença do gitleaks-action só é exigida em organizações.
+  secrets:
+    name: Segredos (gitleaks)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read   # a action lista os commits do PR pela API
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # histórico completo para varrer os commits do PR
+
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: "false"   # o resultado fica no check e no resumo da execução
+
+  # Lint: rápido e independente das dependências pesadas do projeto.
+  # scripts/ (pipeline de ingestão, rodado uma vez) fica de fora.
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar ruff
+        run: pip install ruff==0.14.0
+
+      - name: Rodar ruff
+        run: ruff check src/ tests/ app/
+
+  # Testes: rodam sem Neo4j e sem LLM (mocks e execuções gravadas),
+  # então não usam segredos nem gastam a cota do OpenRouter.
+  tests:
+    name: Testes (pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependências
+        run: |
+          # PyTorch só CPU (~200 MB) antes do sentence-transformers, que senão puxa a versão com CUDA (~2 GB)
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Rodar testes
+        env:
+          GRAPHRAG_MOCK: "1"
+        run: python -m pytest -v
