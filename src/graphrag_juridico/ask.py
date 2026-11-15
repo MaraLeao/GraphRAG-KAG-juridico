@@ -16,7 +16,7 @@ import argparse
 import os
 import re
 
-from .config import get_llm, get_settings
+from .config import chat, get_settings
 from .contracts import AskResult
 from .mock import mock_ask
 from .multihop import EXPAND_QUERY, SHORTEST_PATH_QUERY, Context, Options, confidence, retrieve
@@ -75,11 +75,9 @@ def is_no_info(answer: str) -> bool:
 
 
 def generate_answer(question: str, context: str) -> str:
-    response = get_llm().chat.completions.create(
-        model=get_settings().answer_model, temperature=0,
-        messages=[{"role": "system", "content": SYSTEM},
-                  {"role": "user", "content": f"{context}\n\nPERGUNTA: {question}"}])
-    return (response.choices[0].message.content or "").strip()
+    return chat([{"role": "system", "content": SYSTEM},
+                 {"role": "user", "content": f"{context}\n\nPERGUNTA: {question}"}],
+                model=get_settings().answer_model).strip()
 
 
 def ask(question: str, *, mock: bool | None = None, options: Options = Options(),
@@ -104,6 +102,7 @@ def ask(question: str, *, mock: bool | None = None, options: Options = Options()
         edges=ctx.edges,
         paths=ctx.paths[:MAX_PATHS],
         cypher=([cypher.cypher] if has_query else []) + ctx.cypher,
+        cypher_rows=cypher.rows[:MAX_ROWS] if has_query else [],
         confidence=confidence({**ctx.confidence.components, "citations": citations}),
     )
 

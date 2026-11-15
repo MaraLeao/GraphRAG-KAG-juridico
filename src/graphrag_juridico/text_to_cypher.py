@@ -18,7 +18,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
-from .config import get_llm, get_settings
+from .config import chat, get_settings
 from .db import read
 from .entities import norm_ids_in
 
@@ -183,9 +183,7 @@ def build_messages(question: str, failed: list[dict[str, str]]) -> list[dict[str
 
 
 def generate(messages: list[dict[str, str]]) -> str:
-    response = get_llm().chat.completions.create(
-        model=get_settings().cypher_model, temperature=0, messages=messages)
-    return extract_cypher(response.choices[0].message.content or "")
+    return extract_cypher(chat(messages, model=get_settings().cypher_model))
 
 
 def run(question: str, max_attempts: int = MAX_ATTEMPTS) -> CypherResult:

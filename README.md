@@ -37,6 +37,9 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `ask.py` | Orquestrador `ask(question)`: recuperação multi-hop + Text-to-Cypher + resposta do LLM citando `[Cn]`, `[Pn]` e `[Q]`, com verificação das citações; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
 | `mock.py` | Modo demonstração: reproduz execuções reais gravadas em `resources/demo_answers.json` (sem banco nem LLM) |
 | `graph_view.py` | Visualizações interativas (vis-network): mapa do conhecimento, subgrafo da resposta e rota da resposta |
+| `baselines.py` | Métodos de comparação: LLM puro (sem contexto) e RAG vetorial (mesmo prompt do GraphRAG, só busca vetorial) |
+| `metrics.py` | Métricas automáticas de uma resposta: citações válidas, frases com fonte, normas sem suporte, abstenção e acerto |
+| `evaluation.py` | Avaliação comparativa no conjunto com gabarito (`resources/evaluation_questions.json`), relatório e gráfico |
 | `algorithms.py` | PageRank e Louvain (networkx) sobre o grafo de entidades, gravados nos nós como `pagerank` e `community` |
 | `retrieval.py` | Busca híbrida de trechos: vetor (`vec_chunk`, bge-m3 local) + fulltext (`ft_chunk`) + trechos das entidades, fundidos por RRF |
 | `entities.py` | Ligação das entidades da pergunta: apelidos de normas ("LGPD"), siglas ("STF"), vetor (`vec_concept`) e fulltext |
@@ -107,9 +110,32 @@ uv run streamlit run app/streamlit_app.py      # rode da raiz do repositório; a
   com busca, filtro por comunidade e vizinhos do nó clicado.
 - **Barra lateral:** liga/desliga Shortest Path, PageRank, Louvain e a Cypher do LLM, para comparar o efeito de cada
   um. A pergunta só é enviada com Enter (ou clicando num exemplo): mudar as opções não gasta requisições.
+- **Comparar métodos** (barra lateral, +2 requisições): responde também com o LLM puro e com o RAG vetorial e mostra
+  as três respostas lado a lado com as métricas automáticas, tabela e gráfico.
+- **Avaliação:** o resultado consolidado do conjunto de perguntas com gabarito (ver abaixo).
 - **Modo demonstração** (barra lateral ou `GRAPHRAG_MOCK=1`): não usa o Neo4j nem o LLM. As perguntas de exemplo
   reproduzem execuções reais gravadas, úteis para apresentar sem internet. Para regravar:
   `python -m graphrag_juridico.mock --record` (2 a 3 requisições por pergunta).
+
+#### Avaliação (LLM puro x RAG vetorial x GraphRAG/KAG)
+
+```bash
+python -m graphrag_juridico.evaluation status   # o que já foi gravado
+python -m graphrag_juridico.evaluation run      # roda o que falta (~45 requisições ao LLM; lê o banco)
+python -m graphrag_juridico.evaluation report   # gera evaluation/report.md e evaluation/metrics.png
+```
+
+Dez perguntas com gabarito: estruturadas (gabarito vindo de Cypher de referência), multi-hop e armadilhas que o
+corpus não responde (inclusive uma lei inexistente). Os três métodos usam o mesmo LLM; o RAG vetorial e o GraphRAG,
+o mesmo prompt e as mesmas regras de citação. As métricas (`metrics.py`) não usam LLM: acerto pelo gabarito,
+abstenção correta nas armadilhas, abstenção indevida, citações válidas, frases com fonte e **normas sem suporte**
+(leis citadas que não estão no contexto, indício de alucinação). Cada resposta é gravada assim que chega: se a cota
+acabar, rodar de novo completa só o que falta. As respostas gravadas também alimentam a comparação no modo
+demonstração da interface.
+
+**Cota do LLM:** o plano gratuito do OpenRouter permite 50 requisições por dia **por conta**. Com uma
+`FALLBACK_OPENROUTER_KEY` (de outra conta) no `.env`, as chamadas passam para ela automaticamente quando a principal
+recebe 429/402.
 
 O visual dos grafos (fundo escuro, layout ForceAtlas2, cores por comunidade, barra lateral com busca e legenda) é
 inspirado no [Graphify](https://github.com/Graphify-Labs/graphify); o template é próprio.

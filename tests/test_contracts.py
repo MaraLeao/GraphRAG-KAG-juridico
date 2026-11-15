@@ -34,7 +34,8 @@ def test_mock_citations_point_to_existing_chunks():
 def test_result_is_json_serializable():
     data = json.loads(ask("pergunta", mock=True).model_dump_json())
 
-    assert set(data) == {"question", "answer", "chunks", "nodes", "edges", "paths", "cypher", "confidence"}
+    assert set(data) == {"question", "answer", "chunks", "nodes", "edges", "paths", "cypher", "cypher_rows",
+                         "confidence"}
 
 
 def test_env_var_enables_mock(monkeypatch):
