@@ -21,7 +21,9 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `requirements.txt` | Dependências Python |
 | `pyproject.toml` | Empacotamento do código em `src/` e configuração do `pytest` |
 | `src/graphrag_juridico/` | Sistema de perguntas (ver abaixo) |
-| `tests/` | Testes automatizados (`python -m pytest`) |
+| `app/streamlit_app.py` | Interface web (Streamlit): ponto de entrada fino sobre o pacote |
+| `.streamlit/config.toml` | Tema escuro da interface (mesmas cores do grafo) |
+| `tests/` | Testes automatizados (`python -m pytest`), inclusive da interface em modo demonstração |
 
 ### Pacote `graphrag_juridico`
 
@@ -30,8 +32,9 @@ categoria (~1.000 artigos) para a construção do grafo. Confira a licença do d
 | `config.py` | Lê o `.env`; cria o driver Neo4j (`get_driver`) e o cliente LLM (`get_llm`, OpenRouter por padrão, trocável via `LLM_BASE_URL`) |
 | `db.py` | `read()`: executa Cypher em transação **somente leitura** (o Neo4j recusa escrita) |
 | `contracts.py` | Contrato `AskResult` devolvido por `ask()`, consumido pela UI e pela avaliação |
-| `ask.py` | Orquestrador `ask(question)`; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
-| `mock.py` | Resposta de exemplo no formato do contrato |
+| `ask.py` | Orquestrador `ask(question)`: recuperação multi-hop + Text-to-Cypher + resposta do LLM citando `[Cn]`, `[Pn]` e `[Q]`, com verificação das citações; `ask(..., mock=True)` ou `GRAPHRAG_MOCK=1` devolve dados de exemplo |
+| `mock.py` | Modo demonstração: reproduz execuções reais gravadas em `resources/demo_answers.json` (sem banco nem LLM) |
+| `graph_view.py` | Visualizações interativas (vis-network): mapa do conhecimento, subgrafo da resposta e rota da resposta |
 | `algorithms.py` | PageRank e Louvain (networkx) sobre o grafo de entidades, gravados nos nós como `pagerank` e `community` |
 | `retrieval.py` | Busca híbrida de trechos: vetor (`vec_chunk`, bge-m3 local) + fulltext (`ft_chunk`) + trechos das entidades, fundidos por RRF |
 | `entities.py` | Ligação das entidades da pergunta: apelidos de normas ("LGPD"), siglas ("STF"), vetor (`vec_concept`) e fulltext |
@@ -67,6 +70,47 @@ python -m graphrag_juridico.text_to_cypher "Quais instituições interpretam nor
 
 Usa o `CYPHER_MODEL` do `.env` (uma requisição ao LLM por tentativa). Consultas com escrita, labels ou relações fora
 do schema e caminhos sem limite são recusadas antes de chegar ao banco; a execução é sempre em transação somente leitura.
+
+#### Perguntas (pipeline completo)
+
+```bash
+python -m graphrag_juridico.ask "Qual a relação entre a LGPD e a dignidade da pessoa humana?"
+python -m graphrag_juridico.ask "pergunta" --no-cypher    # sem a Cypher do LLM (uma requisição a menos)
+```
+
+```python
+from graphrag_juridico.ask import ask
+from graphrag_juridico.multihop import Options
+
+result = ask("Quais instituições interpretam a LGPD?", options=Options(use_pagerank=False))
+result.answer, result.chunks, result.paths, result.cypher, result.confidence
+```
+
+O LLM (`ANSWER_MODEL`) recebe só o contexto recuperado: trechos `[C1]...`, caminhos do grafo `[P1]...` e o resultado
+da Cypher `[Q]`. Ele deve citar cada afirmação e, se o contexto não bastar, responder "Não há informação suficiente no
+corpus". As citações são conferidas: citar algo fora do contexto reduz o componente `citations` da confiança.
+Cada pergunta usa 2 a 3 requisições ao LLM.
+
+#### Interface (Streamlit)
+
+```bash
+streamlit run app/streamlit_app.py      # rode da raiz do repositório; abre em http://localhost:8501
+```
+
+- **Perguntar:** resposta com as citações destacadas (trechos `[C]`, caminhos `[P]`, consulta `[Q]`), aviso de
+  abstenção, nível de confiança com seus componentes e o **subgrafo** recuperado. Abaixo: trechos com link para o
+  artigo, a **rota da resposta** (pergunta → entidades → nós percorridos → resposta, só com o que foi citado),
+  a Cypher executada, os nós e o JSON completo.
+- **Mapa do conhecimento:** as entidades mais centrais do grafo (PageRank), coloridas pelas comunidades do Louvain,
+  com busca, filtro por comunidade e vizinhos do nó clicado.
+- **Barra lateral:** liga/desliga Shortest Path, PageRank, Louvain e a Cypher do LLM, para comparar o efeito de cada
+  um. A pergunta só é enviada com Enter (ou clicando num exemplo): mudar as opções não gasta requisições.
+- **Modo demonstração** (barra lateral ou `GRAPHRAG_MOCK=1`): não usa o Neo4j nem o LLM. As perguntas de exemplo
+  reproduzem execuções reais gravadas, úteis para apresentar sem internet. Para regravar:
+  `python -m graphrag_juridico.mock --record` (2 a 3 requisições por pergunta).
+
+O visual dos grafos (fundo escuro, layout ForceAtlas2, cores por comunidade, barra lateral com busca e legenda) é
+inspirado no [Graphify](https://github.com/Graphify-Labs/graphify); o template é próprio.
 
 ## Modelo do grafo (LPG)
 
@@ -187,4 +231,6 @@ Abra `analise_ambito_juridico.ipynb` e execute todas as células. Ele baixa o da
 - [networkx](https://networkx.org/) (PageRank e Louvain).
 - Modelo de embedding [BAAI/bge-m3](https://huggingface.co/BAAI/bge-m3) via `sentence-transformers`.
 - LLMs via [OpenRouter](https://openrouter.ai/) (modelos definidos em `CYPHER_MODEL` e `ANSWER_MODEL` no `.env`).
+- [Streamlit](https://streamlit.io/) (interface) e [vis-network](https://visjs.github.io/vis-network/) (grafos interativos).
+- Visual dos grafos inspirado no [Graphify](https://github.com/Graphify-Labs/graphify) (Apache-2.0); nenhum código copiado.
 - Parte do código foi desenvolvida com apoio de assistente de IA (Claude Code), com revisão do grupo.
