@@ -119,6 +119,35 @@ Nomes do schema em inglês; valores e conteúdo em português.
 
 **Nós:** `Article`, `Chunk`, `Category`, `Norm`, `Institution`, `Concept`, `Scholar`.
 
+```mermaid
+flowchart LR
+    Category((Category))
+    Article((Article))
+    Chunk((Chunk))
+    Norm((Norm))
+    Institution((Institution))
+    Concept((Concept))
+    Scholar((Scholar))
+
+    Article -->|IN_CATEGORY| Category
+    Article -->|HAS_CHUNK| Chunk
+    Article -->|CITES_NORM| Norm
+    Article -->|CITES_SCHOLAR| Scholar
+    Article -->|ABOUT| Concept
+
+    Chunk -->|MENTIONS| Norm
+    Chunk -->|MENTIONS| Institution
+    Chunk -->|MENTIONS| Concept
+    Chunk -->|MENTIONS| Scholar
+
+    Norm -->|REGULATES| Concept
+    Norm -->|AMENDS| Norm
+    Norm -->|REVOKES| Norm
+    Norm -->|ISSUED_BY| Institution
+    Institution -->|INTERPRETS| Norm
+    Concept -->|SPECIALIZES| Concept
+```
+
 **Relações:**
 
 | Relação | Padrão |
@@ -135,6 +164,8 @@ Nomes do schema em inglês; valores e conteúdo em português.
 
 Entidades e relações são extraídas por LLM (NER/RE) com exigência de trecho literal de evidência, validadas
 contra o texto do chunk e unificadas por resolução de entidades (chaves canônicas para normas, instituições e conceitos).
+
+Para a descrição completa de labels, relações, constraints e índices, veja [`docs/schema_lpg.md`](docs/schema_lpg.md).
 
 ## Como reproduzir
 
