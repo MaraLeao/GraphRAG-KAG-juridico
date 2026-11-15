@@ -288,7 +288,9 @@ TEMPLATE = """<!doctype html>
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
          display:flex; height:__HEIGHT__px; overflow:hidden; border-radius:10px; }
-  #graph { flex:1; position:relative; }
+  #wrap { flex:1; position:relative; }
+  #graph { position:absolute; inset:0; }   /* o vis-network esvazia este elemento: nada de filhos aqui */
+  #hud, #center { z-index:5; }
   #hud { position:absolute; left:14px; top:12px; font-size:12px; color:var(--muted); pointer-events:none; letter-spacing:.04em; }
   #hud b { color:var(--text); font-size:14px; letter-spacing:.08em; text-transform:uppercase; }
   #center { position:absolute; left:14px; bottom:12px; z-index:5; background:var(--panel); color:var(--text);
@@ -302,7 +304,7 @@ TEMPLATE = """<!doctype html>
   #search:focus { border-color:var(--accent); }
   #results div, .nb { padding:4px 6px; border-radius:4px; cursor:pointer; font-size:12px; }
   #results div:hover, .nb:hover, .lg:hover { background:var(--border); }
-  #info { font-size:12px; line-height:1.6; }
+  #info { font-size:12px; line-height:1.6; max-height:48%; overflow-y:auto; flex-shrink:0; }
   #info .name { font-size:15px; font-weight:600; margin-bottom:4px; }
   #info .detail { margin-top:6px; padding:6px 8px; background:var(--bg); border-radius:6px; max-height:180px;
                   overflow-y:auto; white-space:pre-wrap; font-size:11.5px; color:#cfcfe0; }
@@ -318,8 +320,11 @@ TEMPLATE = """<!doctype html>
                     border-radius:6px!important; font-family:inherit!important; font-size:12px!important; }
 </style></head>
 <body>
-<div id="graph"><div id="hud"><b>__TITLE__</b><br><span id="stats"></span></div>
-  <button id="center" title="Enquadrar o grafo inteiro">⌖ Centralizar</button></div>
+<div id="wrap">
+  <div id="graph"></div>
+  <div id="hud"><b>__TITLE__</b><br><span id="stats"></span></div>
+  <button id="center" title="Enquadrar o grafo inteiro">Centralizar</button>
+</div>
 <div id="side">
   <div class="sec"><input id="search" placeholder="Buscar entidade..." autocomplete="off"><div id="results"></div></div>
   <div class="sec" id="info"><span style="color:var(--muted)">Clique num nó para ver os detalhes.</span></div>
@@ -328,7 +333,7 @@ TEMPLATE = """<!doctype html>
 </div>
 <script>
 const DATA = __DATA__;
-const nodes = new vis.DataSet(DATA.nodes.map(n => ({...n, title: `${n.name}\\n${n.kind}` +
+const nodes = new vis.DataSet(DATA.nodes.map(n => ({...n, title: n.name + (n.kind && n.kind !== n.name ? `\\n${n.kind}` : "") +
   (n.community !== null && n.community !== undefined ? ` · comunidade ${n.community}` : "") +
   (n.pagerank ? `\\nPageRank ${n.pagerank.toFixed(5)}` : "")})));
 const edges = new vis.DataSet(DATA.edges);

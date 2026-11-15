@@ -119,3 +119,16 @@ def test_reasoning_view_without_cited_paths_shows_the_first_ones_as_not_cited():
 def test_reasoning_view_uses_hierarchical_layout_and_the_map_uses_force_layout():
     assert '"direction": "LR"' in reasoning_view(recorded_lgpd())
     assert "forceAtlas2Based" in knowledge_map([], [])
+
+
+def test_graph_container_is_empty_because_vis_network_clears_it():
+    # o vis-network apaga os filhos do contêiner: título e botões ficam fora dele (senão o script quebra)
+    assert '<div id="graph"></div>' in knowledge_map([], [])
+
+
+def test_every_element_used_by_the_script_exists_in_the_page():
+    page = reasoning_view(recorded_lgpd())
+    script = re.findall(r"<script>(.*?)</script>", page, re.DOTALL)[-1]
+    used = set(re.findall(r'getElementById\("([\w-]+)"\)', script))
+
+    assert used and all(f'id="{element}"' in page for element in used)
