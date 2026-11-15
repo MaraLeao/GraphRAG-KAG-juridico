@@ -15,3 +15,14 @@ def read(cypher: str, **params: Any) -> list[dict[str, Any]]:
 
     with get_driver().session() as session:
         return session.execute_read(work)
+
+
+def write(cypher: str, **params: Any) -> None:
+    """Executa uma escrita. Só para rotinas de manutenção do grafo (ex.: algoritmos);
+    nunca usar com Cypher vinda do usuário ou de um LLM."""
+
+    def work(tx):
+        tx.run(cypher, **params).consume()
+
+    with get_driver().session() as session:
+        session.execute_write(work)
