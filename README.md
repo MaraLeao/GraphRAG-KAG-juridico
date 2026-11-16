@@ -18,6 +18,10 @@ GraphRAG Jurídico responde perguntas sobre ~1.000 artigos do Âmbito Jurídico 
 
 Este repositório é o projeto final da disciplina *Tendências em Ciência da Computação* (Bacharelado em Ciência da Computação, 2026): um sistema de **GraphRAG/KAG** (*Graph-* e *Knowledge-Augmented Generation*) que cobre os quatro pilares da especificação: extração de entidades e relações do texto (Text-to-Graph), modelagem LPG no Neo4j, recuperação híbrida com travessia multi-hop e uma interface que mostra o subgrafo e a procedência de cada resposta. Uma avaliação contra o LLM puro e contra o RAG só vetorial mede o efeito do grafo.
 
+> [!TIP]
+> O artigo técnico do projeto (template SBC) está em
+> [`docs/GraphRAG_Juridico__Recuperacao_Aumentada_por_Grafo_de_Conhecimento_para_Perguntas_sobre_Artigos_Juridicos.pdf`](./docs/GraphRAG_Juridico__Recuperacao_Aumentada_por_Grafo_de_Conhecimento_para_Perguntas_sobre_Artigos_Juridicos.pdf).
+
 ---
 
 ## O Problema
@@ -162,6 +166,7 @@ O RAG vetorial é seguro, mas se absteve em perguntas que tinham resposta (os tr
 | | Subgrafo interativo | `graph_view.py` |
 | | Nós consultados, Cypher gerada, confiança | abas da interface e contrato `AskResult` (`contracts.py`) |
 | Qualidade | Testes e CI | `tests/` (151 testes), `.github/workflows/ci.yml` |
+| | Artigo técnico (SBC) | [`docs/GraphRAG_Juridico__...Artigos_Juridicos.pdf`](./docs/GraphRAG_Juridico__Recuperacao_Aumentada_por_Grafo_de_Conhecimento_para_Perguntas_sobre_Artigos_Juridicos.pdf) |
 
 ---
 
@@ -189,7 +194,7 @@ GraphRAG-KAG-juridico/
 ├── scripts/                      # Pipeline de ingestão: chunking, NER/RE, resolução, carga, embeddings
 ├── tests/                        # Testes (rodam sem Neo4j e sem LLM)
 ├── evaluation/                   # Relatório e gráfico da avaliação
-├── docs/                         # Schema LPG e figuras
+├── docs/                         # Artigo técnico (PDF), schema LPG e figuras
 ├── schema.cypher                 # Constraints, índice BTree e índices fulltext
 ├── schema_vector.cypher          # Índices vetoriais
 ├── docker-compose.yml            # Neo4j local, restauração e geração de dump
